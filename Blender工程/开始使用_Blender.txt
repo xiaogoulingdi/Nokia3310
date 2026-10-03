@@ -1,0 +1,55 @@
+Nokia 3310 · Blender 环境与导入工程
+配置日期：2026-10-03
+
+打开方式
+在项目根目录双击“打开手机模型（Blender）.lnk”。
+它会启动 Windows 全局安装的 Blender 5.2.2 LTS，并打开：
+Blender工程/Nokia3310_导入工作副本.blend
+也可以从开始菜单搜索 Blender，或双击桌面的“Blender 5.2”。
+程序目录：C:\Program Files\Blender Foundation\Blender 5.2
+配置目录：C:\Users\why_thinkpad\AppData\Roaming\Blender Foundation\Blender\5.2\config
+
+已经完成
+- 从 Blender 官方发布服务器下载 Windows x64 MSI，完成全局安装。
+- 下载文件 SHA-256 与官方清单一致，blender.exe 的 Blender Foundation 数字签名有效。
+- 已将简体中文界面、中文工具提示等偏好设置迁移到 Windows 用户配置目录。
+- Windows 开始菜单、桌面入口和 .blend 文件关联已注册；项目快捷方式已切换到全局版。
+- 旧免安装目录和旧 ZIP 压缩包已按用户要求清理，原配置在“配置备份_全局迁移”中保留。
+- 保留新建对象的英文名称，便于后续脚本和网页开发。
+- 导入用户提供的 GLB，保留原始几何、UV 与材质节点。
+- 正面居中视角、带贴图实体预览、选择物体后围绕物体旋转、鼠标位置缩放。
+- 当前启动视图为 SOLID + TEXTURE（带贴图实体预览），原始 PBR 材质仍保留。此前截图遇到首次着色器编译和采集失败，不能据此判断 EEVEE 显示异常；完整材质预览尚未完成核验。
+- 三张 4096×4096 贴图均已内嵌到 .blend，避免单独图片路径丢失。
+- 重新打开保存的 .blend，核对网格、面数、UV、贴图和原始文件校验值。
+
+导入统计
+1 个网格对象，308480 个顶点，499970 个三角面，1 套材质。
+3 张贴图：基础颜色、法线、金属度/粗糙度合并图，均为 4096×4096。
+对象中的按键尚未拆成独立可动画对象；不能由“一个网格对象”直接判断各表面是否拓扑相连。
+当前单位保留生成文件的原始尺度，尚未按手机实物尺寸校准。
+目前的字符存在生成错误；本轮没有修复文字、减面、拆键或制作玻璃材质。
+
+日常操作
+鼠标中键拖动：旋转视角。
+滚轮：缩放。
+小键盘 1：正视图；小键盘 3：侧视图；小键盘 7：顶视图。
+选中手机后按小键盘小数点：将选择对象居中。
+Ctrl+S：保存当前工作副本。
+原始“参考资料/nokia3310_混元原始.glb”保持不变。
+
+文件说明
+“导入报告.json”：原始文件校验、导入统计和配置记录。
+“验证结果.json”：重新打开工程后的校验结果。
+“报错核对说明.txt”：本次脚本、窗口截图及缓存警告的核对结果。
+“Windows全局安装结果.json”和“Windows全局安装.log”：全局安装、入口、旧程序清理记录。
+“导入检查/view_negative_y.png”：Blender Workbench 正面检查渲染。
+“导入检查/view_positive_y.png”：Blender Workbench 背面检查渲染。
+“导入检查/Blender已导入_界面截图.png”：若桌面截图成功，由 Blender 本身保存的应用界面截图。
+“脚本”目录：本次导入、校验与首次打开检查脚本；通常不需要再次运行。
+
+官方来源
+https://www.blender.org/download/
+https://download.blender.org/release/Blender5.2/blender-5.2.2-windows-x64.msi
+https://download.blender.org/release/Blender5.2/blender-5.2.2.sha256
+MSI SHA-256：8dac2751ebe8e3867327eec52f1ef9b344c0a27499bb6221a301b4b35f2828d1
+原始 GLB SHA-256：a967f406837d0faa38eb8313681ee00d3ecf7923ba6c4609a2a56733bbb3e63a

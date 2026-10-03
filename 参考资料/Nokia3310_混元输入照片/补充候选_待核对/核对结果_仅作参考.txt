@@ -1,0 +1,16 @@
+补充候选核对结果（已检查；不属于推荐上传组）
+
+museum_1.png / museum_2.png / museum_3.png：深蓝色另一台经典 3310，分别为正面、背面、侧面；不是缺失的左右 45°。
+来源：https://www.mobilephonemuseum.com/phone-detail/nokia-3310
+
+silver_oblique.jpg：银色手机前侧斜角，机身有画面内倾斜。可供观察外形；不是同一台灰色实拍，也没有证据证明为精确 45°。照片或宣传渲染的制作方式未确认。
+来源：https://www.finson.com/blog/dallo-startac-agli-ericsson-i-cellulari-vintage
+
+blue_oblique.png：蓝色手机斜放，主要显示正面；不适合作为配套 45° 槽位。
+来源：https://www.pngitem.com/middle/TbiRxoi_nokia-3310-hd-png-download/
+
+tek_oblique.jpg：蓝色手机斜放，同时看到正面、侧面及底部；与主照片组姿态和颜色不一致。
+来源：https://www.tek.no/nyheter/nyhet/i/AdQdlj/retrotest-nokia-3310
+
+这些候选仅保留为检索记录和人工造型参考；未混入六张推荐输入，也未收入上传压缩包。
+各文件直接图片地址见 candidate_urls.json。未核实这些候选的开放许可；不要把主照片组的 CC BY-SA 4.0 许可套用于此文件夹。

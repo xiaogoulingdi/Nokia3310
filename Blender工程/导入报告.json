@@ -1,0 +1,52 @@
+{
+  "blender_version": "5.2.2 LTS",
+  "source_file": "C:\\Users\\why_thinkpad\\OneDrive\\Desktop\\复古液态玻璃手机\\参考资料\\nokia3310_混元原始.glb",
+  "source_sha256": "a967f406837d0faa38eb8313681ee00d3ecf7923ba6c4609a2a56733bbb3e63a",
+  "mesh_objects": 1,
+  "vertices": 308480,
+  "polygons": 499970,
+  "materials": 1,
+  "images": [
+    {
+      "name": "texture_pbr_20250901",
+      "width": 4096,
+      "height": 4096,
+      "packed": true
+    },
+    {
+      "name": "texture_pbr_20250901_metallic-texture_pbr_20250901_roughness",
+      "width": 4096,
+      "height": 4096,
+      "packed": true
+    },
+    {
+      "name": "texture_pbr_20250901_normal",
+      "width": 4096,
+      "height": 4096,
+      "packed": true
+    }
+  ],
+  "world_bounds_min": [
+    -0.21947799623012543,
+    -0.11086516827344894,
+    -1.4895694455674402e-08
+  ],
+  "world_bounds_max": [
+    0.21653400361537933,
+    0.14834201335906982,
+    1.178415060043335
+  ],
+  "dimensions_in_import_units": [
+    0.43601199984550476,
+    0.25920718908309937,
+    1.178415060043335
+  ],
+  "interface_language": "zh_HANS",
+  "render_engine": "BLENDER_EEVEE",
+  "geometry_modified": false,
+  "material_nodes_modified": false,
+  "physical_scale_calibrated": false,
+  "preview_kind": "Blender Workbench textured inspection render, not a desktop screenshot",
+  "startup_viewport": "SOLID with TEXTURE colors; original PBR material nodes preserved",
+  "material_preview_gui_verified": false
+}

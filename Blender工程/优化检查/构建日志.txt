@@ -1,0 +1,137 @@
+TBBmalloc: skip allocation functions replacement in ucrtbase.dll: unknown prologue for function _aligned_free
+00:01.265  blend            | Read blend: "C:\Users\why_thinkpad\OneDrive\Desktop\复古液态玻璃手机\Blender工程\Nokia3310_导入工作副本.blend"
+C:\Users\why_thinkpad\OneDrive\Desktop\复古液态玻璃手机\Blender工程\脚本\构建可交互优化模型.py:44: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m=bpy.data.materials.new(name);m.diffuse_color=(*color,1);m.use_nodes=True
+C:\Users\why_thinkpad\OneDrive\Desktop\复古液态玻璃手机\Blender工程\脚本\构建可交互优化模型.py:320: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world=bpy.data.worlds.new('Glass_Studio_World');world.use_nodes=True
+00:07.109  image.write      | ERROR OpenImageIO write failed: Could not open file "즀Í\.thumbnails\large\blender_36316_00bcb65c792650b3f99ad4e52465bbd0.png.png"
+信息: 已另存为 "Nokia3310_交互优化_v1.blend"
+INFO Draco is available, use library at C:\Program Files\Blender Foundation\Blender 5.2\5.2\scripts\addons_core\io_scene_gltf2\bf_intern_draco_bridge.dll
+INFO MeshOptimizer is available, use library at C:\Program Files\Blender Foundation\Blender 5.2\5.2\scripts\addons_core\io_scene_gltf2\bf_intern_meshopt_bridge.dll
+13:57:34 | INFO: Starting glTF 2.0 export
+13:57:34 | INFO: Extracting primitive: node_0.001
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Digit_0
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Keycap_0
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Digit_1
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Keycap_1
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Digit_2
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Keycap_2
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Letters_2
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Digit_3
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Keycap_3
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Letters_3
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Digit_4
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Keycap_4
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Letters_4
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Digit_5
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Keycap_5
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Letters_5
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Digit_6
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Keycap_6
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Letters_6
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Digit_7
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Keycap_7
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Letters_7
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Digit_8
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Keycap_8
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Letters_8
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Digit_9
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Keycap_9
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Letters_9
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Keycap_Clear
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Legend_Clear
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Digit_Hash
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Keycap_Hash
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Keycap_Menu
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Navi_Cyan_Bar
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Keycap_Scroll
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Legend_Down
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Legend_Up
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Digit_Star
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Keycap_Star
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Letters_Star
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Model_Mark
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Nokia_Badge
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Nokia_Legend
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Screen_Display
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: LCD_Pixel_Preview
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Screen_Frame
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Socket_0
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Socket_1
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Socket_2
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Socket_3
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Socket_4
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Socket_5
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Socket_6
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Socket_7
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Socket_8
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Socket_9
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Socket_Hash
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Extracting primitive: Socket_Star
+13:57:34 | INFO: Primitives created: 1
+13:57:34 | INFO: Finished glTF 2.0 export in 0.27824950218200684 s
+00:17.937  render           | Saved: 'C:\Users\why_thinkpad\OneDrive\Desktop\复古液态玻璃手机\Blender工程\优化检查\01_玻璃模型_三分之四视角.png'
+00:27.906  render           | Saved: 'C:\Users\why_thinkpad\OneDrive\Desktop\复古液态玻璃手机\Blender工程\优化检查\03_玻璃模型_正面.png'
+
+OPTIMIZED_REPORT {"source_sha256": "a967f406837d0faa38eb8313681ee00d3ecf7923ba6c4609a2a56733bbb3e63a", "original_triangles": 499970, "body_triangles": 69992, "asset_triangles_before_bevel_evaluation": 96734, "independent_press_controls": 15, "key_ids": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#", "menu", "clear", "scroll"], "screen_object": "Screen_Display", "screen_uv": true, "animation_clips": ["Showcase_Rotate", "Press_1", "Press_2", "Press_3", "Press_4", "Press_5", "Press_6", "Press_7", "Press_8", "Press_9", "Press_Star", "Press_0", "Press_Hash", "Press_Menu", "Press_Clear", "Press_Scroll"], "units_note": "Imported proportions preserved; not a measured CAD reconstruction.", "material_note": "Blender preview uses thin-film interference and colored studio lights. GLB includes volume and dispersion extensions; browser support and final appearance must be verified.", "blend_file": "C:\\Users\\why_thinkpad\\OneDrive\\Desktop\\复古液态玻璃手机\\Blender工程\\Nokia3310_交互优化_v1.blend", "glb_file": "C:\\Users\\why_thinkpad\\OneDrive\\Desktop\\复古液态玻璃手机\\Blender工程\\网页模型\\nokia3310_interactive_v1.glb"}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:37:04)
+
+Blender quit

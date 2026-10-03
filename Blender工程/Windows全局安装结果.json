@@ -1,0 +1,20 @@
+{
+  "version": "5.2.2 LTS",
+  "installation_type": "Windows MSI all users",
+  "install_directory": "C:\\Program Files\\Blender Foundation\\Blender 5.2",
+  "msi_sha256": "8dac2751ebe8e3867327eec52f1ef9b344c0a27499bb6221a301b4b35f2828d1",
+  "msi_exit_code": 0,
+  "source_glb_sha256": "A967F406837D0FAA38EB8313681EE00D3ECF7923BA6C4609A2A56733BBB3E63A",
+  "working_blend_sha256": "CB7BC8105C1AD33BC7848BD79D3F9003EB2C0258C69B63607BE53DD7957CCBF2",
+  "old_portable_removed": true,
+  "start_menu_shortcut": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Blender\\Blender 5.2.lnk",
+  "desktop_shortcut": "C:\\Users\\Public\\Desktop\\Blender 5.2.lnk",
+  "blend_file_association": "blender.5.2",
+  "removed_portable_bytes": 957269597.0,
+  "old_zip_removed": true,
+  "removed_zip_bytes": 404453484,
+  "global_gui_phone_visible": true,
+  "preferences_language": "zh_HANS",
+  "working_blend_unchanged": true,
+  "original_glb_unchanged": true
+}
