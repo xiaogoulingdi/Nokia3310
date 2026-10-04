@@ -12,11 +12,11 @@ test('home -> number input -> delete -> empty -> home is a complete path',()=>{
 });
 
 test('menu directions wrap, confirm selected entry and C restores parent selection',()=>{
-  let state=sequence(initialPhoneState(),['menu','up']);assert.equal(state.menuIndex,2);
+  let state=sequence(initialPhoneState(),['menu','up']);assert.equal(state.menuIndex,3);
   state=tap(state,'menu');assert.equal(state.page,'about');state=tap(state,'clear');
-  assert.equal(state.page,'menu');assert.equal(state.menuIndex,2);
-  state=sequence(state,['down','down','menu']);assert.equal(state.page,'settings');
-  state=tap(state,'clear');assert.equal(state.page,'menu');assert.equal(state.menuIndex,1);
+  assert.equal(state.page,'menu');assert.equal(state.menuIndex,3);
+  state=sequence(state,['up','menu']);assert.equal(state.page,'settings');
+  state=tap(state,'clear');assert.equal(state.page,'menu');assert.equal(state.menuIndex,2);
   assert.equal(tap(state,'clear').page,'home');
 });
 
@@ -43,7 +43,7 @@ test('press/release/cancel and unsupported repeat do not become a second busines
 
 test('settings and external controls share preferences without redundant notifications',()=>{
   const changes=[];const phone=createPhoneState({onChange:s=>changes.push(s)});
-  for(const key of ['menu','down','menu','menu'])phone.dispatch({key,phase:'activate'});
+  for(const key of ['menu','down','down','menu','menu'])phone.dispatch({key,phase:'activate'});
   assert.equal(phone.state.theme,'glass');phone.dispatch({key:'down',phase:'activate'});phone.dispatch({key:'menu',phase:'activate'});
   assert.equal(phone.state.soundEnabled,false);const count=changes.length;
   phone.setPreferences({theme:'glass',soundEnabled:false});assert.equal(changes.length,count);

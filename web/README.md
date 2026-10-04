@@ -2,7 +2,7 @@
 
 完整的技术栈、模型处理、网页加载与按键原理见 [项目总览](../README.md)。本文侧重构建、预览和发布命令。
 
-网页源码最初取自 2026-10-03 的实际线上发布目录。`main` 已合入这份网页，模型源文件仍保留在 `Blender工程/`。本地 `20261004-screen-1` 已完成模式、统一输入和动态 LCD 操作流程，尚未发布。见 [阶段 A](../docs/阶段A验收.md) 和 [阶段 B1](../docs/阶段B1-屏幕与菜单.md)。
+网页源码最初取自 2026-10-03 的实际线上发布目录。`main` 已合入这份网页，模型源文件仍保留在 `Blender工程/`。`20261004-screen-1` 已发布，包含模式、统一输入和动态 LCD 操作流程。本地 `20261004-calendar-1` 进一步接入独立日历，尚未发布。见 [阶段 A](../docs/阶段A验收.md)、[阶段 B1](../docs/阶段B1-屏幕与菜单.md) 和 [日历说明](../docs/阶段B2-日历.md)。
 
 ## 日常构建与本地预览
 
@@ -32,7 +32,7 @@ python3 web/build.py
 python3 web/build.py --model /path/to/new-model.glb --serve 8080
 ```
 
-构建结果位于 `web/dist/`。`build-manifest.json` 记录这次实际生成的 21 份运行资源的大小和 SHA-256，方便与部署文件核对；它不代表已经发布，也不对自身求哈希。源码输出统一使用 LF，避免 Windows Git 换行转换造成复现差异。GLB 和依赖文件按原始二进制字节复制。
+构建结果位于 `web/dist/`。`build-manifest.json` 记录这次实际生成的 23 份运行资源的大小和 SHA-256，方便与部署文件核对；它不代表已经发布，也不对自身求哈希。源码输出统一使用 LF，避免 Windows Git 换行转换造成复现差异。GLB 和依赖文件按原始二进制字节复制。
 
 ## 展示与使用
 
@@ -45,6 +45,8 @@ python3 web/build.py --model /path/to/new-model.glb --serve 8080
 模块分工：`viewer.js` 管理三维资源和唯一调度；`view-modes.js` 管理模式及相机；`input.js` 输出与三维无关的事件；`interaction.js` 负责拾取与物理反馈；`phone-state.js` 管理数字、菜单和设置；`lcd.js` 管理显示基座及唯一纹理；`app.js` 连接模块。
 
 LCD 使用 84×64 方形像素与内置点阵字模，隐藏旧静态文字。数字最长 32 位，选项可清空全部或回主菜单。设置中的主题／声音与外部控件同步。内容不变时不重画，待机时钟按分钟更新，隐藏时停止计时；草稿与菜单为页面内会话状态。
+
+本地日历：主菜单选 `CALENDAR`。上下或 4／6 换日，2／8 换周，*／# 换月，0 回今天；Menu 查看日期详情，C 逐层返回。日期状态与点阵绘制分别在 `apps/calendar.js`、`apps/calendar-screen.js`，共用现有 LCD，无新增纹理、计时器或网络请求。选中日期仅在当前页面会话保留，不含日程编辑和同步。详见[日历模块与验收](../docs/阶段B2-日历.md)。
 
 ## 材质主题与棚拍
 
@@ -83,7 +85,7 @@ python3 web/build.py --verify-snapshot web/release-snapshots/20261003-black.json
 
 ## 修改与发布流程
 
-最近一次已完成的发布为 **2026-10-04 / `20261004-feedback-3`**：[部署、验收与回退记录](../docs/发布记录-20261004.md)，[文件哈希与线上检查](release-snapshots/20261004-feedback.json)。后续修改仍需独立构建和发布。
+最近一次已完成的发布为 **2026-10-04 / `20261004-screen-1`**：[部署、验收与回退记录](../docs/发布记录-20261004-屏幕菜单.md)，[文件哈希与线上检查](release-snapshots/20261004-screen.json)。日历仍为本地开发版，后续修改需独立构建和发布。
 
 1. 从同步后的 `main` 建立功能分支，修改源码或模型。
 2. 本地构建，检查显示效果、按键与目标设备表现。
@@ -92,17 +94,17 @@ python3 web/build.py --verify-snapshot web/release-snapshots/20261003-black.json
 
 构建脚本不含 SSH、上传、自动部署或服务器配置修改。Git 推送与网站发布是两个独立操作。网页必须部署在域名根目录；不要把 Blender 工程、源模型目录或整个 Git 仓库作为公开网站根目录。
 
-Cloudflare 会缓存静态资源。本地待发布版本 `20261004-screen-1` 已用于 HTML 的 CSS/JS 链接、应用模块导入、GLB 和棚拍 JSON 地址。后续发布修改过的资源时，应同步更新 `index.html`、`app.js`、`viewer.js`、`lcd.js` 中的版本参数，避免新页面混用旧脚本或旧模型；固定版本的 Three.js 不变。发布验证应核对这些带版本参数的实际请求。
+Cloudflare 会缓存静态资源。本地待发布版本 `20261004-calendar-1` 已用于 HTML 的 CSS/JS 链接、应用模块导入、GLB 和棚拍 JSON 地址。后续发布应同步更新 HTML 与所有业务模块导入中的版本参数，包括 `apps/` 内的导入，避免新页面混用旧脚本或旧模型；固定版本的 Three.js 不变。发布验证应核对这些带版本参数的实际请求。
 
 ## 验证
 
 ```sh
 python3 -m unittest discover -s web/tests -v
-node --test web/tests/test_feedback.mjs web/tests/test_input.mjs web/tests/test_input_dom.mjs web/tests/test_modes.mjs web/tests/test_phone.mjs web/tests/test_lcd.mjs
+node --test web/tests/test_feedback.mjs web/tests/test_input.mjs web/tests/test_input_dom.mjs web/tests/test_modes.mjs web/tests/test_phone.mjs web/tests/test_lcd.mjs web/tests/test_calendar.mjs
 ```
 
 测试覆盖修改源码/替换模型后的开发构建、历史版一致性、Windows 换行、快照失败保留旧输出、依赖及缓存完整性、输出路径边界，以及预览端口冲突时不共享端口并自动选择空闲端口，全部离线执行。
 
-Node 测试需先构建。25 项测试覆盖实际 GLB、按键、模式、DOM 输入及取消、数字和菜单规则、设置同步、LCD 布局与资源生命周期。9 项 Python 测试验证构建与本地预览。当前浏览器验收见 `tests/phase-b-validation.json`；阶段 A、反馈版及最初浏览器结果分别保留为历史记录。
+Node 测试需先构建。33 项测试覆盖实际 GLB、按键、模式、DOM 输入及取消、数字和菜单规则、设置同步、LCD 布局与资源生命周期，以及日历日期计算、完整返回、跨日和实例隔离。9 项 Python 测试验证构建与本地预览。当前日历浏览器验收见 `tests/calendar-validation.json`；`tests/phase-b-validation.json` 和更早记录保留为历史证据。
 
 原部署记录还包含 15 个按键射线命中、动画回位、拖动/多指误触过滤与四种视口比例的检查。这些是 2026-10-03 版本的记录，不能替代今后每次改动后的实际浏览器验收，也不是实际手机硬件上的性能测试。模型和参考资料的来源与使用许可需另行核实。

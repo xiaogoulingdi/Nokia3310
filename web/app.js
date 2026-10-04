@@ -1,9 +1,9 @@
-import { createViewer } from './viewer.js?v=20261004-screen-1';
-import { createViewModes } from './view-modes.js?v=20261004-screen-1';
-import { bindPhoneInput } from './input.js?v=20261004-screen-1';
-import { bindThemeSwitch } from './theme-switch.js?v=20261004-screen-1';
-import { createKeySound } from './key-sound.js?v=20261004-screen-1';
-import { createPhoneState } from './phone-state.js?v=20261004-screen-1';
+import { createViewer } from './viewer.js?v=20261004-calendar-1';
+import { createViewModes } from './view-modes.js?v=20261004-calendar-1';
+import { bindPhoneInput } from './input.js?v=20261004-calendar-1';
+import { bindThemeSwitch } from './theme-switch.js?v=20261004-calendar-1';
+import { createKeySound } from './key-sound.js?v=20261004-calendar-1';
+import { createPhoneState } from './phone-state.js?v=20261004-calendar-1';
 
 const container=document.querySelector('#canvas-container'),loading=document.querySelector('#loading'),label=document.querySelector('#loading-label');
 const status=document.querySelector('#key-status'),instructions=document.querySelector('#instructions');
@@ -29,7 +29,8 @@ function setSound(enabled){
 }
 function syncInstructions(){
   const mode=document.body.dataset.mode,page=phone.state.page;
-  const hints={home:'数字键开始输入 · Menu 打开菜单',digits:'C 删除 · 空白时 C 返回 · Menu 选项',settings:'↑ ↓ 选择 · Menu 更改 · C 返回',about:'Menu 或 C 返回菜单'};
+  const hints={home:'数字键开始输入 · Menu 打开菜单',digits:'C 删除 · 空白时 C 返回 · Menu 选项',settings:'↑ ↓ 选择 · Menu 更改 · C 返回',about:'Menu 或 C 返回菜单',
+    calendar:phone.state.calendar.view==='day'?'↑ ↓ 换日 · 0 今天 · Menu / C 返回月历':'↑ ↓ 换日 · * / # 换月 · 0 今天\n2 / 8 换周 · Menu 日期 · C 返回'};
   instructions.textContent=mode==='use'?(hints[page]??'↑ ↓ 选择 · Menu 确认 · C 返回'):mode==='showcase'?'拖动观察 · 滚轮或双指缩放':'正在调整视角';
 }
 syncSound();

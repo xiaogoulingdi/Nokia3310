@@ -1,9 +1,9 @@
 import * as THREE from './vendor/three/three.module.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { createKeyFeedback } from './interaction.js?v=20261004-screen-1';
-import { createAppearance } from './appearance.js?v=20261004-screen-1';
-import { createLCD } from './lcd.js?v=20261004-screen-1';
+import { createKeyFeedback } from './interaction.js?v=20261004-calendar-1';
+import { createAppearance } from './appearance.js?v=20261004-calendar-1';
+import { createLCD } from './lcd.js?v=20261004-calendar-1';
 
 export function createViewer({container,onProgress=()=>{},onScreenSummary=()=>{}}) {
   const scene=new THREE.Scene();scene.background=new THREE.Color(0x000000);
@@ -43,8 +43,8 @@ export function createViewer({container,onProgress=()=>{},onScreenSummary=()=>{}
     geometries.forEach(item=>item.dispose());if(materials)ownedMaterials.forEach(item=>item.dispose());
   }
   const ready=Promise.all([
-    new GLTFLoader().loadAsync('/assets/nokia3310.glb?v=20261004-screen-1',event=>{if(!disposed&&event.total)onProgress(Math.round(event.loaded/event.total*100));}),
-    fetch('/assets/studio.json?v=20261004-screen-1').then(response=>{if(!response.ok)throw Error('Studio HTTP '+response.status);return response.json();}),
+    new GLTFLoader().loadAsync('/assets/nokia3310.glb?v=20261004-calendar-1',event=>{if(!disposed&&event.total)onProgress(Math.round(event.loaded/event.total*100));}),
+    fetch('/assets/studio.json?v=20261004-calendar-1').then(response=>{if(!response.ok)throw Error('Studio HTTP '+response.status);return response.json();}),
   ]).then(([gltf,studio])=>{
     if(disposed){disposeModel(gltf.scene);return false;}
     model=gltf.scene;model.updateMatrixWorld(true);

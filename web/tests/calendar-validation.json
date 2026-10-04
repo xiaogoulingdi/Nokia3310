@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "version": "20261004-calendar-1",
+  "verified_at_utc": "2026-10-04T11:11:52.326Z",
+  "automated": {
+    "python": 9,
+    "node": 33,
+    "total": 42
+  },
+  "browser": {
+    "url": "http://127.0.0.1:8010/",
+    "physical_keys": {
+      "down": "2026-10-05",
+      "next_month": "2026-11-04",
+      "today": "2026-10-04"
+    },
+    "returns": {
+      "from_day": "month",
+      "from_month": "menu",
+      "menu_index": 1
+    },
+    "six_week_selection": "2026-03-31",
+    "real_theme": {
+      "geometries": 59,
+      "textures": 3
+    },
+    "glass_before": {
+      "geometries": 59,
+      "textures": 4
+    },
+    "glass_after_24_month_changes": {
+      "geometries": 59,
+      "textures": 4
+    },
+    "static_sample_ms": 800,
+    "static_render_delta": 0,
+    "static_lcd_draw_delta": 0,
+    "portrait": {
+      "width": 320,
+      "height": 740,
+      "scrollWidth": 320,
+      "controlsBottom": 728,
+      "hint": {
+        "x": 81.9375,
+        "y": 668,
+        "width": 156.109375,
+        "height": 33,
+        "top": 668,
+        "right": 238.046875,
+        "bottom": 701,
+        "left": 81.9375
+      }
+    },
+    "landscape": {
+      "width": 844,
+      "height": 390,
+      "scrollWidth": 844,
+      "controls": {
+        "x": 600.125,
+        "y": 246,
+        "width": 227.875,
+        "height": 120,
+        "top": 246,
+        "right": 828,
+        "bottom": 366,
+        "left": 600.125
+      },
+      "hint": {
+        "x": 628.90625,
+        "y": 303,
+        "width": 170.296875,
+        "height": 36,
+        "top": 303,
+        "right": 799.203125,
+        "bottom": 339,
+        "left": 628.90625
+      }
+    },
+    "console_errors": []
+  },
+  "screenshots": [
+    "docs/images/calendar-month-glass.png",
+    "docs/images/calendar-day-real.png",
+    "docs/images/calendar-six-weeks.png",
+    "docs/images/calendar-320.png"
+  ],
+  "limits": [
+    "No real touch-device or hardware FPS test",
+    "Calendar has no events, persistence or account sync",
+    "Calendar remains local; production is 20261004-screen-1"
+  ]
+}

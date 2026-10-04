@@ -44,8 +44,26 @@ test('hidden updates defer drawing, then resume once; disposal restores GLB and 
 });
 
 test('all pages, selections and a full 32-digit entry remain inside LCD pixel bounds',()=>{
-  for(const theme of ['real','glass'])for(const page of ['home','menu','digits','digit-options','settings','about'])for(const index of [0,1,2]){
+  for(const theme of ['real','glass'])for(const page of ['home','menu','digits','digit-options','settings','about'])for(const index of [0,1,2,3]){
     const rects=[];paintScreen({fillRect:(...r)=>rects.push(r)},{...initialPhoneState(),theme,page,menuIndex:index,settingsIndex:index%2,optionsIndex:index%2,digits:'12345678901234567890123456789012',soundEnabled:false},new Date(2026,9,4,23,59));
     assert.ok(rects.length>20);for(const [x,y,w,h] of rects){assert.ok(x>=0&&y>=0&&x+w<=LCD_WIDTH&&y+h<=LCD_HEIGHT,`${page}: ${[x,y,w,h]}`);}
   }
+});
+
+test('six-week calendars, selected dates and detail screens fit the LCD in both themes',()=>{
+  for(const theme of ['real','glass'])for(const view of ['month','day'])for(const date of ['2026-03-01','2026-03-31','2024-02-29','0001-01-01','9999-12-31']){
+    const rects=[];paintScreen({fillRect:(...r)=>rects.push(r)},{...initialPhoneState({},date),theme,page:'calendar',calendar:{selected:date,today:date,view}});
+    for(const [x,y,w,h] of rects)assert.ok(x>=0&&y>=0&&x+w<=LCD_WIDTH&&y+h<=LCD_HEIGHT,`${date} ${view}: ${[x,y,w,h]}`);
+  }
+});
+
+test('calendar month changes reuse the LCD texture and never schedule a render timer',()=>{
+  const f=fixture();try{
+    const state={...initialPhoneState({},'2026-10-04'),page:'calendar'};f.lcd.update(state);
+    const texture=f.base.getObjectByName('LCD_Content').material.map;assert.equal(f.timers.size,0);
+    for(let i=0;i<40;i++)f.lcd.update({...state,calendar:{...state.calendar,selected:i%2?'2026-10-05':'2026-10-04'}});
+    assert.equal(f.base.getObjectByName('LCD_Content').material.map,texture);assert.equal(f.timers.size,0);
+    const draws=f.lcd.diagnostics.draws;f.lcd.update({...state,calendar:{...state.calendar,selected:'2026-10-05'}});
+    assert.equal(f.lcd.diagnostics.draws,draws);
+  }finally{f.lcd.dispose();}
 });

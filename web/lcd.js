@@ -1,5 +1,6 @@
 import * as THREE from './vendor/three/three.module.js';
-import {describeScreen, DIGIT_LIMIT} from './phone-state.js?v=20261004-screen-1';
+import {describeScreen, DIGIT_LIMIT, MENU_ITEMS} from './phone-state.js?v=20261004-calendar-1';
+import {paintCalendar} from './apps/calendar-screen.js?v=20261004-calendar-1';
 
 export const LCD_WIDTH = 84, LCD_HEIGHT = 64;
 // Compact 5x7 bitmaps keep pixels sharp without external fonts or text meshes.
@@ -56,7 +57,13 @@ export function paintScreen(ctx, state, date = new Date()) {
     centered(`${String(date.getDate()).padStart(2,'0')} ${months[date.getMonth()]} ${date.getFullYear()}`,41);
     footer('MENU');
   } else if (state.page === 'menu') {
-    header(`MENU ${state.menuIndex+1}/3`);rows(['DIGITS','SETTINGS','ABOUT'],state.menuIndex);footer('SELECT');
+    const start=Math.max(0,Math.min(state.menuIndex-1,MENU_ITEMS.length-3));
+    header(`MENU ${state.menuIndex+1}/${MENU_ITEMS.length}`);
+    rows(MENU_ITEMS.slice(start,start+3).map(item=>item.label),state.menuIndex-start);
+    if(start>0)text('<',75,3);else if(start+3<MENU_ITEMS.length)text('>',75,3);
+    footer('SELECT');
+  } else if (state.page === 'calendar') {
+    paintCalendar({rect,text,centered,header,footer,ink,background},state.calendar);
   } else if (state.page === 'digits') {
     header(state.digits.length === DIGIT_LIMIT ? 'FULL 32/32' : `DIGITS ${state.digits.length}/32`);
     if (!state.digits) {centered('TYPE A',22);centered('NUMBER',33);}

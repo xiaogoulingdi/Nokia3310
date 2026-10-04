@@ -36,6 +36,7 @@ body[data-theme=glass] .sound-toggle{border-color:#89b1be55;background:linear-gr
 .rotation-toggle[hidden]{display:none}
 .mode-panel p{margin:0;color:#a8b1a5;font-size:12px;line-height:1.5;text-align:center}
 .key-status{min-height:18px;color:#d7e5cd;font:500 12px/18px system-ui,sans-serif;letter-spacing:.06em}
+#instructions{white-space:pre-line}
 body[data-theme=glass] .mode-toggle{border-color:#92bcc780;background:linear-gradient(120deg,#749dab80,#243f4dcc 52%,#765238b3);box-shadow:inset 1px 1px 2px #d3f5ff8c,inset -1px -1px 2px #f2bf8a66,0 5px 20px #0008;color:#eff9fc}
 body[data-theme=glass] .rotation-toggle{border-color:#51707c;background:#15232bc9;color:#c7dce4}
 body[data-mode=use] canvas,body[data-mode=use] canvas:active{cursor:pointer}
