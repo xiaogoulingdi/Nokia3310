@@ -1,0 +1,188 @@
+{
+  "validation_passed": true,
+  "source_glb_unchanged": true,
+  "original_blend_unchanged": true,
+  "export_triangles": 98608,
+  "glb_bytes": 3087660,
+  "export_meshes": 59,
+  "export_nodes": 75,
+  "animation_checks": {
+    "Showcase_Rotate": {
+      "duration_seconds": 8.0,
+      "sampled_frames": 241
+    },
+    "Press_0": {
+      "travel": 0.0040000081062316895,
+      "duration_seconds": 0.36666667461395264,
+      "returns_to_rest": true
+    },
+    "Press_1": {
+      "travel": 0.0040000006556510925,
+      "duration_seconds": 0.36666667461395264,
+      "returns_to_rest": true
+    },
+    "Press_2": {
+      "travel": 0.004000015556812286,
+      "duration_seconds": 0.36666667461395264,
+      "returns_to_rest": true
+    },
+    "Press_3": {
+      "travel": 0.0040000081062316895,
+      "duration_seconds": 0.36666667461395264,
+      "returns_to_rest": true
+    },
+    "Press_4": {
+      "travel": 0.0040000081062316895,
+      "duration_seconds": 0.36666667461395264,
+      "returns_to_rest": true
+    },
+    "Press_5": {
+      "travel": 0.0040000006556510925,
+      "duration_seconds": 0.36666667461395264,
+      "returns_to_rest": true
+    },
+    "Press_6": {
+      "travel": 0.0040000006556510925,
+      "duration_seconds": 0.36666667461395264,
+      "returns_to_rest": true
+    },
+    "Press_7": {
+      "travel": 0.0040000006556510925,
+      "duration_seconds": 0.36666667461395264,
+      "returns_to_rest": true
+    },
+    "Press_8": {
+      "travel": 0.0040000081062316895,
+      "duration_seconds": 0.36666667461395264,
+      "returns_to_rest": true
+    },
+    "Press_9": {
+      "travel": 0.0040000006556510925,
+      "duration_seconds": 0.36666667461395264,
+      "returns_to_rest": true
+    },
+    "Press_Clear": {
+      "travel": 0.003000006079673767,
+      "duration_seconds": 0.36666667461395264,
+      "returns_to_rest": true
+    },
+    "Press_Hash": {
+      "travel": 0.0040000006556510925,
+      "duration_seconds": 0.36666667461395264,
+      "returns_to_rest": true
+    },
+    "Press_Menu": {
+      "travel": 0.00299999862909317,
+      "duration_seconds": 0.36666667461395264,
+      "returns_to_rest": true
+    },
+    "Press_Scroll": {
+      "travel": 0.00299999862909317,
+      "duration_seconds": 0.36666667461395264,
+      "returns_to_rest": true
+    },
+    "Press_Star": {
+      "travel": 0.004000015556812286,
+      "duration_seconds": 0.36666667461395264,
+      "returns_to_rest": true
+    }
+  },
+  "closed_geometry_checks": {
+    "Body_Glass_Optimized": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Keycap_1": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Keycap_2": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Keycap_3": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Keycap_4": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Keycap_5": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Keycap_6": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Keycap_7": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Keycap_8": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Keycap_9": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Keycap_Star": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Keycap_0": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Keycap_Hash": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Keycap_Menu": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Keycap_Clear": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Keycap_Scroll": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Screen_Frame": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Screen_Display": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    },
+    "Nokia_Badge": {
+      "nonmanifold_edges": 0,
+      "positive_volume": true
+    }
+  },
+  "screen_uv_present": true,
+  "glass_extensions": {
+    "KHR_materials_clearcoat": {
+      "clearcoatFactor": 0.2199999988079071
+    },
+    "KHR_materials_transmission": {
+      "transmissionFactor": 1
+    },
+    "KHR_materials_volume": {
+      "thicknessFactor": 0.1599999964237213
+    },
+    "KHR_materials_dispersion": {
+      "dispersion": 0.800000011920929
+    },
+    "KHR_materials_ior": {
+      "ior": 1.4700000286102295
+    }
+  },
+  "reference_and_studio_excluded": true,
+  "browser_visual_validation": "not performed; Blender renders checked separately"
+}

@@ -15,8 +15,8 @@ from urllib.request import urlopen
 import webbrowser
 
 WEB = Path(__file__).resolve().parent
-SOURCE_FILES = ("index.html", "style.css", "app.js", "interaction.js")
-MODEL_PATH = Path("Blender工程/网页模型/nokia3310_interactive_v1.glb")
+SOURCE_FILES = ("index.html", "style.css", "app.js", "interaction.js", "appearance.js", "theme-switch.js", "key-sound.js", "assets/studio.json")
+MODEL_PATH = Path("Blender工程/网页模型/nokia3310_interactive_v2.glb")
 
 
 def checked(data, expected, label):

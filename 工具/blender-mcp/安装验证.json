@@ -1,0 +1,18 @@
+{
+  "server_package": "mcp-for-blender==2.1.3",
+  "repository": "https://github.com/ahujasid/mcp-for-blender",
+  "blender": "5.2.2 LTS",
+  "project": "Nokia3310_交互优化_v2.blend",
+  "addon_enabled": true,
+  "telemetry": false,
+  "external_integrations": {
+    "polyhaven": false,
+    "hyper3d": false,
+    "hunyuan3d": false,
+    "sketchfab": false,
+    "tripo": false,
+    "polypizza": false
+  },
+  "function_key_roughness": 0.25999999046325684,
+  "status": "MCP execute_blender_code reached Blender and opened the completed v2 project"
+}

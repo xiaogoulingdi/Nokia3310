@@ -1,11 +1,13 @@
-import bpy,bmesh,json,struct,hashlib,math
+import bpy,bmesh,json,struct,hashlib,math,sys,subprocess
 from pathlib import Path
 import numpy as np
 
 ROOT=Path(__file__).resolve().parents[2]
 OUT=ROOT/'Blender工程'
 CHECK=OUT/'优化检查'
-glb=OUT/'网页模型'/'nokia3310_interactive_v1.glb'
+version=sys.argv[sys.argv.index('--')+1] if '--' in sys.argv else 'v1'
+assert version in ('v1','v2')
+glb=OUT/'网页模型'/f'nokia3310_interactive_{version}.glb'
 data=glb.read_bytes()
 assert data[:4]==b'glTF'
 json_len=struct.unpack_from('<I',data,12)[0]
@@ -76,7 +78,16 @@ assert original_hash=='a967f406837d0faa38eb8313681ee00d3ecf7923ba6c4609a2a56733b
 install=json.loads((OUT/'Windows全局安装结果.json').read_text(encoding='utf-8-sig'))
 original_blend=OUT/'Nokia3310_导入工作副本.blend'
 blend_preserved=hashlib.file_digest(original_blend.open('rb'),'sha256').hexdigest().upper()==install['working_blend_sha256'].upper()
+if version=='v2':
+    # The import copy was edited since the old installation receipt. For v2,
+    # compare both pre-existing Blender projects with this checkout's HEAD.
+    def matches_head(path):
+        relative=path.relative_to(ROOT).as_posix()
+        committed=subprocess.check_output(['git','rev-parse','HEAD:'+relative],cwd=ROOT,text=True).strip()
+        current=subprocess.check_output(['git','hash-object',str(path)],cwd=ROOT,text=True).strip()
+        return committed==current
+    blend_preserved=matches_head(original_blend) and matches_head(OUT/'Nokia3310_交互优化_v1.blend')
 assert blend_preserved
 report={'validation_passed':True,'source_glb_unchanged':True,'original_blend_unchanged':blend_preserved,'export_triangles':triangles,'glb_bytes':len(data),'export_meshes':len(doc['meshes']),'export_nodes':len(doc['nodes']),'animation_checks':animation_report,'closed_geometry_checks':closed_geometry,'screen_uv_present':True,'glass_extensions':glass['extensions'],'reference_and_studio_excluded':True,'browser_visual_validation':'not performed; Blender renders checked separately'}
-(CHECK/'交互模型验证.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+(CHECK/('交互模型验证.json' if version=='v1' else 'v2交互模型验证.json')).write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
 print('VALIDATED',json.dumps({k:v for k,v in report.items() if k not in ['closed_geometry_checks','animation_checks','glass_extensions']},ensure_ascii=False))

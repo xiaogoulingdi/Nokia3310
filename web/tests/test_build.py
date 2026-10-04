@@ -29,6 +29,7 @@ class BuildWorkflowTests(unittest.TestCase):
         self.expected = {}
         for name in builder.SOURCE_FILES:
             data = f"original {name}\n".encode()
+            (self.web / name).parent.mkdir(parents=True, exist_ok=True)
             (self.web / name).write_bytes(data)
             self.expected[name] = data
         self.model = self.root / builder.MODEL_PATH

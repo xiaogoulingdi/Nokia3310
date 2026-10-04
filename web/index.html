@@ -7,17 +7,32 @@
   <meta name="description" content="Nokia 3310 三维交互展示。">
   <title>Nokia 3310</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='8' y='2' width='16' height='28' rx='5' fill='%23b4c4cc'/><rect x='11' y='7' width='10' height='8' rx='1' fill='%239eaf87'/></svg>">
-  <link rel="stylesheet" href="/style.css?v=20261003-black-1">
+  <link rel="stylesheet" href="/style.css?v=20261004-feedback-3">
   <script type="importmap">{"imports":{"three":"/vendor/three/three.module.js","three/addons/":"/vendor/three/addons/"}}</script>
 </head>
-<body>
+<body data-theme="real">
   <main aria-label="Nokia 3310 三维交互展示">
     <div id="canvas-container" aria-describedby="instructions"></div>
+    <div class="theme-control" aria-label="手机材质">
+      <button id="theme-switch" class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="玻璃棚拍主题" aria-describedby="theme-help" disabled>
+        <span class="switch-thumb" aria-hidden="true"></span>
+        <span class="theme-option"><span class="material-dot real-dot" aria-hidden="true"></span>经典实体</span>
+        <span class="theme-option"><span class="material-dot glass-dot" aria-hidden="true"></span>玻璃棚拍</span>
+      </button>
+      <button id="sound-toggle" class="sound-toggle" type="button" aria-label="按键声音" aria-pressed="true" title="关闭按键声音">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M11 5 6 9H3v6h3l5 4Z"/>
+          <path class="sound-waves" d="M15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/>
+          <path class="sound-muted" d="m16 9 5 6m0-6-5 6"/>
+        </svg>
+      </button>
+      <p id="theme-help" class="sr-only">关闭为经典实体，打开为玻璃棚拍。点击、左右滑动或使用方向键切换。</p>
+    </div>
     <p id="instructions" class="sr-only">拖动旋转手机，滚轮或双指缩放，轻点手机按键。</p>
     <div id="loading" class="loading" role="status"><span class="loading-ring" aria-hidden="true"></span><span id="loading-label" class="sr-only">正在加载模型</span></div>
     <span id="key-status" class="sr-only" aria-live="polite"></span>
   </main>
   <noscript><p class="error-message">请启用 JavaScript 查看手机模型。</p></noscript>
-  <script type="module" src="/app.js?v=20261003-black-1"></script>
+  <script type="module" src="/app.js?v=20261004-feedback-3"></script>
 </body>
 </html>

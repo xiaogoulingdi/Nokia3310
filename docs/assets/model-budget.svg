@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="500" viewBox="0 0 1400 500" role="img" aria-labelledby="title desc">
   <title id="title">原始与优化 GLB 三角面比较</title>
-  <desc id="desc">原始模型499970个三角面，最终GLB98654个，减少约80.3%。最终GLB约3.09MB、59个网格、75个节点。面数变化不直接代表帧率变化。</desc>
+  <desc id="desc">原始模型499970个三角面，v2 GLB98608个，减少约80.3%。最终GLB约3.09MB、59个网格、75个节点。面数变化不直接代表帧率变化。</desc>
   <style>text{font-family:'Microsoft YaHei','Noto Sans CJK SC',sans-serif}.title{font-size:32px;font-weight:700;fill:#172c42}.label{font-size:23px;fill:#30475c}.value{font-size:25px;font-weight:700;fill:#172c42}.note{font-size:20px;fill:#586c80}.metric{font-size:28px;font-weight:700;fill:#087f83}</style>
   <rect width="1400" height="500" rx="24" fill="#f3f7f9"/>
   <text class="title" x="48" y="60">优化后的完整资产，三角面减少约 80.3%</text>
@@ -10,7 +10,7 @@
   <text class="value" x="1180" y="169">499,970</text>
   <text class="label" x="48" y="242">最终交互 GLB</text>
   <rect x="265" y="211" width="175.61" height="44" rx="9" fill="#118b8d"/>
-  <text class="value" x="466" y="243">98,654</text>
+  <text class="value" x="466" y="243">98,608</text>
   <line x1="48" y1="300" x2="1352" y2="300" stroke="#d7e2e8" stroke-width="2"/>
   <text class="metric" x="48" y="356">3.09 MB</text><text class="note" x="48" y="389">GLB 文件大小</text>
   <text class="metric" x="389" y="356">59 / 75</text><text class="note" x="389" y="389">网格资源 / 场景节点</text>

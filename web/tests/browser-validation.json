@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-04",
+  "environment": "Windows Codex in-app Chromium, local HTTP preview",
+  "realKeyHits": [
+    "Key_0",
+    "Key_1",
+    "Key_2",
+    "Key_3",
+    "Key_4",
+    "Key_5",
+    "Key_6",
+    "Key_7",
+    "Key_8",
+    "Key_9",
+    "Key_Clear",
+    "Key_Hash",
+    "Key_Menu",
+    "Key_Scroll",
+    "Key_Star"
+  ],
+  "glassKeyHits": [
+    "Key_0",
+    "Key_1",
+    "Key_2",
+    "Key_3",
+    "Key_4",
+    "Key_5",
+    "Key_6",
+    "Key_7",
+    "Key_8",
+    "Key_9",
+    "Key_Clear",
+    "Key_Hash",
+    "Key_Menu",
+    "Key_Scroll",
+    "Key_Star"
+  ],
+  "keysObservedMoving": [
+    "Key_0",
+    "Key_1",
+    "Key_2",
+    "Key_3",
+    "Key_4",
+    "Key_5",
+    "Key_6",
+    "Key_7",
+    "Key_8",
+    "Key_9",
+    "Key_Clear",
+    "Key_Hash",
+    "Key_Menu",
+    "Key_Scroll",
+    "Key_Star"
+  ],
+  "allKeysReturnToRest": true,
+  "themeSwitch": {
+    "click": true,
+    "keyboardArrows": true,
+    "space": true,
+    "dragBothDirections": true,
+    "repetitions": 20,
+    "cameraPreserved": true
+  },
+  "resources": {
+    "before": {
+      "geometries": 59,
+      "textures": 3
+    },
+    "after": {
+      "geometries": 59,
+      "textures": 3
+    },
+    "scope": "Three.js resource counts, not process/GPU byte usage"
+  },
+  "idleObservation": {
+    "durationMs": 1200,
+    "additionalFrames": 0
+  },
+  "layouts": [
+    {
+      "width": 1280,
+      "height": 900
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "buttonHeight": 48,
+      "canvasTop": 80
+    }
+  ],
+  "orbitDrag": {
+    "rotated": true,
+    "noKeyActivation": true
+  },
+  "consoleIssues": [],
+  "limitations": [
+    "No real mobile GPU benchmark",
+    "No Cycles pixel comparison",
+    "No production deployment"
+  ]
+}

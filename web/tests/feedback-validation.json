@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-04",
+  "environment": "Windows Codex in-app Chromium, http://127.0.0.1:8010/",
+  "appVersion": "20261004-feedback-3",
+  "sourceModelSha256": "bd13712fb9ce218dd6081a5acb382d517e7133213d4e443a4dd45c068ae39527",
+  "automatedTests": {"pythonBuildTestsPassed": 9, "nodeFeedbackTestsPassed": 4},
+  "travelScale": 1.35,
+  "browserObservations": {
+    "realThemeKeysHit": 15,
+    "glassThemeKeysHit": 15,
+    "realKey5": {
+      "peakDisplacementModelUnits": 0.00539999455213547,
+      "pressedLinearColor": [0.478800106957208, 0.49560011071009247, 0.445200099451439],
+      "restLinearColor": [0.57, 0.59, 0.53],
+      "endDisplacement": 0,
+      "neighborKey6Unchanged": true
+    },
+    "glassClearKey": {
+      "peakDisplacementModelUnits": 0.004049992173912692,
+      "pressedLinearColor": [0.5616002560191847, 0.6786002861106938, 0.7410002990600558],
+      "restLinearColor": [0.7200000286102295, 0.8700000047683716, 0.949999988079071],
+      "endDisplacement": 0,
+      "neighborMenuKeyUnchanged": true
+    },
+    "liveAudioCuesStartedInBothThemes": true,
+    "mutedClickDoesNotStartVoice": true,
+    "muteSurvivesReload": true,
+    "dragStartingOnKeyDoesNotStartVoice": true,
+    "soundEnabledRestoredAfterTesting": true,
+    "idle": {"sampleMilliseconds": 1200, "newRenderFrames": 0, "activeAudioVoices": 0, "audioContextState": "suspended"},
+    "resourcesAfter20ThemeChanges": {
+      "before": {"geometries": 59, "textures": 3},
+      "after": {"geometries": 59, "textures": 3}
+    },
+    "smallViewport": {"width": 320, "horizontalOverflow": false, "soundButtonWidth": 48, "soundButtonHeight": 48}
+  },
+  "offlineAudioWaveforms": {
+    "sampleRate": 48000,
+    "sampleCount": 24000,
+    "channels": 1,
+    "masterGain": 0.28,
+    "real": {"allSamplesFinite": true, "peak": 0.0475761778652668, "rms": 0.005460519805479376, "peakAfter150ms": 0},
+    "glass": {"allSamplesFinite": true, "peak": 0.04524489492177963, "rms": 0.0020899493336982247, "peakAfter150ms": 0}
+  },
+  "screenshots": ["docs/images/theme-real.png", "docs/images/theme-glass.png", "docs/images/key-feedback-pressed.png", "docs/images/key-feedback-mobile.png"],
+  "limits": [
+    "Audio validation checks synthesis, live scheduling and cleanup, not subjective listening through the user's speakers.",
+    "Viewport emulation is not an actual mobile GPU or total-memory benchmark.",
+    "These are local development observations; this record does not indicate website deployment."
+  ]
+}
