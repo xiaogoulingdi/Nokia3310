@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">从参考图片到浏览器：液态玻璃手机的制作流程</title>
+  <desc id="desc">参考图片进入混元3D生成原始GLB，经Blender优化导出交互GLB，由Three.js网页加载，构建后发布到VPS；浏览器负责实时渲染。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#568185"/></marker>
+    <style>text{font-family:'Microsoft YaHei','Noto Sans CJK SC',sans-serif}.title{font-size:34px;font-weight:700;fill:#172c42}.sub{font-size:20px;fill:#586c80}.step{font-size:21px;font-weight:700;fill:#087f83}.name{font-size:27px;font-weight:700;fill:#172c42}.body{font-size:21px;fill:#465b6e}.tag{font-size:18px;fill:#087f83}.box{fill:#fff;stroke:#d7e2e8;stroke-width:2}.line{fill:none;stroke:#568185;stroke-width:3;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect width="1400" height="760" rx="24" fill="#f3f7f9"/>
+  <text x="48" y="65" class="title">一部手机，从图片走到网页</text>
+  <text x="48" y="103" class="sub">上排从左向右，下排从右向左 · 模型制作与网站发布分步完成</text>
+  <g transform="translate(48 150)">
+    <rect class="box" width="382" height="214" rx="18"/><text class="step" x="26" y="39">01 / 参考资料</text>
+    <text class="name" x="26" y="83">多角度手机图片</text>
+    <text class="body" x="26" y="126">6 张实拍 + 2 张 AI 补充视角</text>
+    <text class="body" x="26" y="158">整理方向、分辨率与来源</text>
+    <text class="tag" x="26" y="192">产物：混元多视图输入</text>
+  </g>
+  <g transform="translate(509 150)">
+    <rect class="box" width="382" height="214" rx="18"/><text class="step" x="26" y="39">02 / 初始生成</text>
+    <text class="name" x="26" y="83">腾讯混元 3D</text>
+    <text class="body" x="26" y="126">生成基础外形与贴图</text>
+    <text class="body" x="26" y="158">原始整体约 50 万三角面</text>
+    <text class="tag" x="26" y="192">产物：原始 GLB</text>
+  </g>
+  <g transform="translate(970 150)">
+    <rect class="box" width="382" height="214" rx="18"/><text class="step" x="26" y="39">03 / 模型整理</text>
+    <text class="name" x="26" y="83">Blender + Python</text>
+    <text class="body" x="26" y="126">机身减面、重建按键和文字</text>
+    <text class="body" x="26" y="158">制作材质、屏幕和动画</text>
+    <text class="tag" x="26" y="192">产物：可继续编辑的 .blend</text>
+  </g>
+  <path class="line" d="M440 257 H495"/><path class="line" d="M901 257 H956"/>
+  <path class="line" d="M1161 375 V424"/>
+  <g transform="translate(970 438)">
+    <rect class="box" width="382" height="214" rx="18"/><text class="step" x="26" y="39">04 / 网页资产</text>
+    <text class="name" x="26" y="83">导出交互 GLB</text>
+    <text class="body" x="26" y="126">98,654 三角面 · 约 3.09 MB</text>
+    <text class="body" x="26" y="158">15 段按压 + 1 段旋转动画</text>
+    <text class="tag" x="26" y="192">不导出原始参考与棚拍灯光</text>
+  </g>
+  <g transform="translate(509 438)">
+    <rect class="box" width="382" height="214" rx="18"/><text class="step" x="26" y="39">05 / 网页交互</text>
+    <text class="name" x="26" y="83">Three.js + 原生 JS</text>
+    <text class="body" x="26" y="126">加载、照明、视角控制</text>
+    <text class="body" x="26" y="158">射线拾取与按压动画播放</text>
+    <text class="tag" x="26" y="192">Python 构建 web/dist</text>
+  </g>
+  <g transform="translate(48 438)">
+    <rect class="box" width="382" height="214" rx="18"/><text class="step" x="26" y="39">06 / 发布与访问</text>
+    <text class="name" x="26" y="83">VPS → 使用者浏览器</text>
+    <text class="body" x="26" y="126">服务器提供网页和模型文件</text>
+    <text class="body" x="26" y="158">浏览器 GPU 持续实时渲染</text>
+    <text class="tag" x="26" y="192">推送代码不等于自动发布</text>
+  </g>
+  <path class="line" d="M960 545 H905"/><path class="line" d="M499 545 H444"/>
+  <text x="48" y="711" class="sub">当前边界：自由旋转与按压已实现；模式切换、动态屏幕和声音仍待接入。</text>
+</svg>

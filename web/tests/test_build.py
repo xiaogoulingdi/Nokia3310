@@ -128,5 +128,16 @@ class BuildWorkflowTests(unittest.TestCase):
         self.assertFalse((self.web / "outside.js").exists())
 
 
+class PreviewServerTests(unittest.TestCase):
+    def test_busy_port_is_not_shared_and_falls_back_to_a_free_port(self):
+        with builder.preview_server(0) as existing:
+            with self.assertRaises(OSError):
+                with builder.preview_server(existing.server_port):
+                    pass
+            with builder.preview_server(existing.server_port, fallback=True) as fallback:
+                self.assertNotEqual(fallback.server_port, existing.server_port)
+                self.assertEqual(fallback.server_address[0], "127.0.0.1")
+
+
 if __name__ == "__main__":
     unittest.main()

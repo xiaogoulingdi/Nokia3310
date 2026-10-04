@@ -2,14 +2,17 @@
 """Build the current viewer; optionally verify a historical release snapshot."""
 import argparse
 import base64
+import errno
 from functools import partial
 import hashlib
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import io
 import json
 from pathlib import Path, PurePosixPath
+import socket
 import tarfile
 from urllib.request import urlopen
+import webbrowser
 
 WEB = Path(__file__).resolve().parent
 SOURCE_FILES = ("index.html", "style.css", "app.js", "interaction.js")
@@ -96,13 +99,38 @@ class PreviewHandler(SimpleHTTPRequestHandler):
         super().end_headers()
 
 
+class PreviewServer(ThreadingHTTPServer):
+    # Windows must not silently share a listening port with another preview.
+    allow_reuse_address = False
+
+    def server_bind(self):
+        if hasattr(socket, "SO_EXCLUSIVEADDRUSE"):
+            self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
+        super().server_bind()
+
+
+def preview_server(port, fallback=False):
+    handler = partial(PreviewHandler, directory=str(WEB / "dist"))
+    try:
+        return PreviewServer(("127.0.0.1", port), handler)
+    except OSError as error:
+        if not fallback or error.errno not in (errno.EADDRINUSE, 10048, 10013):
+            raise
+        print(f"Port {port} is unavailable; choosing an available local port.")
+        return PreviewServer(("127.0.0.1", 0), handler)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model", type=Path, help="Use an alternate current GLB")
     parser.add_argument("--tarball", type=Path, help="Use an offline Three.js tarball; integrity is always checked")
     parser.add_argument("--verify-snapshot", type=Path, help="Require exact runtime-file hashes from a release snapshot")
     parser.add_argument("--serve", type=int, metavar="PORT", help="After building, preview on 127.0.0.1 at this port")
+    parser.add_argument("--open-browser", action=argparse.BooleanOptionalAction, default=False,
+                        help="Open the preview in your browser; choose a free port if the requested one is busy")
     args = parser.parse_args()
+    if args.open_browser and args.serve is None:
+        parser.error("--open-browser requires --serve PORT")
     manifest = build(model=args.model, tarball=args.tarball, verify_snapshot=args.verify_snapshot)
     print(f"Built {len(manifest['files'])} runtime files and build-manifest.json into web/dist")
     print(f"Three.js {manifest['three_version']}: package and file integrity verified")
@@ -111,8 +139,15 @@ def main():
     else:
         print("Development build: using current project sources and model")
     if args.serve is not None:
-        with ThreadingHTTPServer(("127.0.0.1", args.serve), partial(PreviewHandler, directory=str(WEB / "dist"))) as server:
-            print(f"Preview: http://127.0.0.1:{server.server_port}/ (Ctrl+C to stop)", flush=True)
+        with preview_server(args.serve, fallback=args.open_browser) as server:
+            url = f"http://127.0.0.1:{server.server_port}/"
+            print(f"Preview: {url} (Ctrl+C to stop)", flush=True)
+            if args.open_browser:
+                try:
+                    if not webbrowser.open(url):
+                        print("Please open the preview URL above in your browser.")
+                except webbrowser.Error:
+                    print("Could not open a browser automatically; use the preview URL above.")
             try:
                 server.serve_forever()
             except KeyboardInterrupt:
