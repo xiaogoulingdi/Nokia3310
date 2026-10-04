@@ -1,6 +1,7 @@
 import * as THREE from './vendor/three/three.module.js';
-import {describeScreen, DIGIT_LIMIT, MENU_ITEMS} from './phone-state.js?v=20261004-calendar-1';
-import {paintCalendar} from './apps/calendar-screen.js?v=20261004-calendar-1';
+import {describeScreen, DIGIT_LIMIT, MENU_ITEMS} from './phone-state.js?v=20261004-snake-1';
+import {paintCalendar} from './apps/calendar-screen.js?v=20261004-snake-1';
+import {paintSnake} from './apps/snake-screen.js?v=20261004-snake-1';
 
 export const LCD_WIDTH = 84, LCD_HEIGHT = 64;
 // Compact 5x7 bitmaps keep pixels sharp without external fonts or text meshes.
@@ -64,6 +65,10 @@ export function paintScreen(ctx, state, date = new Date()) {
     footer('SELECT');
   } else if (state.page === 'calendar') {
     paintCalendar({rect,text,centered,header,footer,ink,background},state.calendar);
+  } else if (state.page === 'games') {
+    header('GAMES');rows(['SNAKE'],0);footer('SELECT');
+  } else if (state.page === 'snake') {
+    paintSnake({rect,text,centered,header,footer,ink,background},state.snake);
   } else if (state.page === 'digits') {
     header(state.digits.length === DIGIT_LIMIT ? 'FULL 32/32' : `DIGITS ${state.digits.length}/32`);
     if (!state.digits) {centered('TYPE A',22);centered('NUMBER',33);}

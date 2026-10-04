@@ -44,7 +44,7 @@ test('hidden updates defer drawing, then resume once; disposal restores GLB and 
 });
 
 test('all pages, selections and a full 32-digit entry remain inside LCD pixel bounds',()=>{
-  for(const theme of ['real','glass'])for(const page of ['home','menu','digits','digit-options','settings','about'])for(const index of [0,1,2,3]){
+  for(const theme of ['real','glass'])for(const page of ['home','menu','digits','digit-options','settings','about','games'])for(const index of [0,1,2,3,4]){
     const rects=[];paintScreen({fillRect:(...r)=>rects.push(r)},{...initialPhoneState(),theme,page,menuIndex:index,settingsIndex:index%2,optionsIndex:index%2,digits:'12345678901234567890123456789012',soundEnabled:false},new Date(2026,9,4,23,59));
     assert.ok(rects.length>20);for(const [x,y,w,h] of rects){assert.ok(x>=0&&y>=0&&x+w<=LCD_WIDTH&&y+h<=LCD_HEIGHT,`${page}: ${[x,y,w,h]}`);}
   }

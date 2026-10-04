@@ -1,6 +1,7 @@
 // Phone navigation is independent of rendering, audio, storage and accounts.
 // 手机导航独立于渲染、声音、存储和账户，后续应用复用相同动作接口。
-import {initialCalendar,localDate,reduceCalendar,describeCalendar} from './apps/calendar.js?v=20261004-calendar-1';
+import {initialCalendar,localDate,reduceCalendar,describeCalendar} from './apps/calendar.js?v=20261004-snake-1';
+import {initialSnake,reduceSnake,stepSnake,pauseSnake,describeSnake} from './apps/snake.js?v=20261004-snake-1';
 
 // One catalog supplies routing, LCD labels and accessible names.
 // 同一菜单目录供路由、LCD 标签及无障碍描述使用，新增应用无需维护三组索引。
@@ -8,6 +9,7 @@ export const MENU_ITEMS = Object.freeze([
   {id:'digits',label:'DIGITS',name:'数字输入'},
   {id:'calendar',label:'CALENDAR',name:'日历'},
   {id:'settings',label:'SETTINGS',name:'设置'},
+  {id:'games',label:'GAMES',name:'游戏'},
   {id:'about',label:'ABOUT',name:'关于手机'},
 ].map(Object.freeze));
 export const DIGIT_LIMIT = 32;
@@ -18,10 +20,10 @@ const shift = (index, key, length) => (index + (key === 'up' ? -1 : 1) + length)
 export function initialPhoneState(preferences = {}, today = localDate(new Date())) {
   return {page: 'home', menuIndex: 0, settingsIndex: 0, optionsIndex: 0, digits: '',
     theme: preferences.theme === 'glass' ? 'glass' : 'real', soundEnabled: preferences.soundEnabled !== false,
-    calendar:initialCalendar(today)};
+    calendar:initialCalendar(today),snake:initialSnake({difficulty:preferences.snakeDifficulty,highScores:preferences.snakeScores})};
 }
 
-export function reducePhone(state, event, {today=state.calendar.today} = {}) {
+export function reducePhone(state, event, {today=state.calendar.today,random=0} = {}) {
   const {key, phase} = event;
   if (phase !== 'activate' && phase !== 'repeat') return state;
   if (phase === 'repeat' && key !== 'up' && key !== 'down') return state;
@@ -32,6 +34,14 @@ export function reducePhone(state, event, {today=state.calendar.today} = {}) {
     return {...state, page: 'digits', digits: state.digits + symbol(key)};
   }
   switch (state.page) {
+    case 'games':
+      if(key==='clear')return {...state,page:'menu'};
+      return key==='menu'?{...state,page:'snake'}:state;
+    case 'snake': {
+      if(key==='clear'&&state.snake.status!=='running')return {...state,page:'games'};
+      const snake=reduceSnake(state.snake,key,random);
+      return snake===state.snake?state:{...state,snake};
+    }
     case 'home':
       return key === 'menu' ? {...state, page: 'menu'} : state;
     case 'menu':
@@ -69,15 +79,18 @@ export function reducePhone(state, event, {today=state.calendar.today} = {}) {
   }
 }
 
-const copyState = state => ({...state,calendar:{...state.calendar}});
-export function createPhoneState({preferences, onChange = () => {}, now = () => new Date()} = {}) {
+const copyState = state => ({...state,calendar:{...state.calendar},snake:{...state.snake,
+  body:state.snake.body.map(p=>({...p})),queue:[...state.snake.queue],food:state.snake.food?{...state.snake.food}:null,highScores:{...state.snake.highScores}}});
+export function createPhoneState({preferences, onChange = () => {}, now = () => new Date(),random=Math.random} = {}) {
   let state = initialPhoneState(preferences,localDate(now()));
   function publish(next) {
     if (next === state) return false;
     const previous = state; state = next; onChange(copyState(state), copyState(previous)); return true;
   }
   return {
-    dispatch: event => publish(reducePhone(state, event, {today:localDate(now())})),
+    dispatch: event => publish(reducePhone(state, event, {today:localDate(now()),random:random()})),
+    tick(){if(state.page!=='snake')return false;const snake=stepSnake(state.snake,random());return snake===state.snake?false:publish({...state,snake});},
+    pauseGame(){const snake=pauseSnake(state.snake);return snake===state.snake?false:publish({...state,snake});},
     setPreferences({theme = state.theme, soundEnabled = state.soundEnabled}) {
       if (!['real', 'glass'].includes(theme) || typeof soundEnabled !== 'boolean') return false;
       return theme === state.theme && soundEnabled === state.soundEnabled ? false : publish({...state, theme, soundEnabled});
@@ -92,6 +105,8 @@ export function describeScreen(state) {
     case 'home': return '手机待机。数字键开始输入，Menu 打开菜单。';
     case 'menu': return `主菜单，第 ${state.menuIndex + 1} 项：${MENU_ITEMS[state.menuIndex].name}。上下选择，Menu 确认，C 返回待机。`;
     case 'calendar': return describeCalendar(state.calendar);
+    case 'games': return '游戏菜单：贪吃蛇。Menu 打开，C 返回主菜单。';
+    case 'snake': return describeSnake(state.snake);
     case 'digits': return `数字输入：${state.digits || '空'}${state.digits.length === DIGIT_LIMIT ? '，已达 32 位上限' : ''}。C 删除，空白时 C 返回待机，Menu 打开选项。`;
     case 'digit-options': return `输入选项：${state.optionsIndex === 0 ? '清空全部' : '主菜单'}。Menu 确认，C 返回输入。`;
     case 'settings': return `设置：${state.settingsIndex === 0 ? '材质主题，' + (state.theme === 'real' ? '经典实体' : '玻璃棚拍') : '按键声音，' + (state.soundEnabled ? '开启' : '关闭')}。Menu 更改，C 返回菜单。`;

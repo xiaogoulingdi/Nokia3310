@@ -1,4 +1,4 @@
-import {calendarInfo,monthGrid} from './calendar.js?v=20261004-calendar-1';
+import {calendarInfo,monthGrid} from './calendar.js?v=20261004-snake-1';
 
 // A 3x5 numeric face fits six complete weeks in the same 84x64 LCD.
 // 3x5 数字字模让六周月历完整放入原有 84x64 LCD，不增加纹理。

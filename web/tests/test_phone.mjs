@@ -12,10 +12,10 @@ test('home -> number input -> delete -> empty -> home is a complete path',()=>{
 });
 
 test('menu directions wrap, confirm selected entry and C restores parent selection',()=>{
-  let state=sequence(initialPhoneState(),['menu','up']);assert.equal(state.menuIndex,3);
+  let state=sequence(initialPhoneState(),['menu','up']);assert.equal(state.menuIndex,4);
   state=tap(state,'menu');assert.equal(state.page,'about');state=tap(state,'clear');
-  assert.equal(state.page,'menu');assert.equal(state.menuIndex,3);
-  state=sequence(state,['up','menu']);assert.equal(state.page,'settings');
+  assert.equal(state.page,'menu');assert.equal(state.menuIndex,4);
+  state=sequence(state,['up','up','menu']);assert.equal(state.page,'settings');
   state=tap(state,'clear');assert.equal(state.page,'menu');assert.equal(state.menuIndex,2);
   assert.equal(tap(state,'clear').page,'home');
 });

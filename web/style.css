@@ -45,3 +45,16 @@ canvas:focus-visible{outline:1px solid #a3c7d059;outline-offset:-4px;border-radi
 @media(max-width:600px){#canvas-container{top:78px;bottom:124px}.mode-panel{bottom:max(12px,env(safe-area-inset-bottom))}.mode-panel p{max-width:310px;font-size:11px}.theme-switch{width:calc(100vw - 88px);max-width:232px}}
 @media(max-height:480px) and (min-width:601px){#canvas-container{top:8px;bottom:8px;left:30%;width:40%}.mode-panel{left:auto;right:16px;width:27%;bottom:24px}.mode-actions{flex-direction:column}.theme-control{left:16px;top:16px;transform:scale(.85);transform-origin:top left}}
 @media(prefers-reduced-motion:reduce){.mode-toggle,.rotation-toggle{transition:none}}
+
+/* Give the fixed phone more room; its real keys remain the only game controls. */
+/* 固定使用时压缩页脚留白，让手机本身的屏幕和按键更容易看清、点中。 */
+body[data-mode=use] #canvas-container,body[data-mode=entering-use] #canvas-container{bottom:100px}
+body[data-mode=use] .mode-panel{gap:6px}
+body[data-mode=use] .key-status{display:none}
+body[data-mode=use] .mode-toggle{min-height:44px}
+@media(max-height:480px) and (min-width:500px){
+  #canvas-container,body[data-mode=use] #canvas-container,body[data-mode=entering-use] #canvas-container{top:8px;bottom:8px;left:30%;width:40%}
+  .mode-panel{left:auto;right:12px;width:27%;bottom:20px}
+  .mode-actions{flex-direction:column}.mode-toggle{min-width:0;padding:0 18px}
+  .theme-control{left:12px;top:12px;transform:scale(.72);transform-origin:top left}
+}

@@ -1,9 +1,9 @@
 import * as THREE from './vendor/three/three.module.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { createKeyFeedback } from './interaction.js?v=20261004-calendar-1';
-import { createAppearance } from './appearance.js?v=20261004-calendar-1';
-import { createLCD } from './lcd.js?v=20261004-calendar-1';
+import { createKeyFeedback } from './interaction.js?v=20261004-snake-1';
+import { createAppearance } from './appearance.js?v=20261004-snake-1';
+import { createLCD } from './lcd.js?v=20261004-snake-1';
 
 export function createViewer({container,onProgress=()=>{},onScreenSummary=()=>{}}) {
   const scene=new THREE.Scene();scene.background=new THREE.Color(0x000000);
@@ -43,8 +43,8 @@ export function createViewer({container,onProgress=()=>{},onScreenSummary=()=>{}
     geometries.forEach(item=>item.dispose());if(materials)ownedMaterials.forEach(item=>item.dispose());
   }
   const ready=Promise.all([
-    new GLTFLoader().loadAsync('/assets/nokia3310.glb?v=20261004-calendar-1',event=>{if(!disposed&&event.total)onProgress(Math.round(event.loaded/event.total*100));}),
-    fetch('/assets/studio.json?v=20261004-calendar-1').then(response=>{if(!response.ok)throw Error('Studio HTTP '+response.status);return response.json();}),
+    new GLTFLoader().loadAsync('/assets/nokia3310.glb?v=20261004-snake-1',event=>{if(!disposed&&event.total)onProgress(Math.round(event.loaded/event.total*100));}),
+    fetch('/assets/studio.json?v=20261004-snake-1').then(response=>{if(!response.ok)throw Error('Studio HTTP '+response.status);return response.json();}),
   ]).then(([gltf,studio])=>{
     if(disposed){disposeModel(gltf.scene);return false;}
     model=gltf.scene;model.updateMatrixWorld(true);
@@ -60,6 +60,9 @@ export function createViewer({container,onProgress=()=>{},onScreenSummary=()=>{}
   function project(point){const box=element.getBoundingClientRect();point.project(camera);return {x:box.left+(point.x+1)*box.width/2,y:box.top+(1-point.y)*box.height/2};}
   return {
     ready,element,camera,controls,requestRender,
+    // Fit the front to 96% of stage height or 88% of width, whichever fits first.
+    // 正面手机占可用区域高度的 96% 或宽度的 88%，取先达到的限制以防裁切。
+    getUseZoom:()=>size?Math.min((camera.top-camera.bottom)*.96/size.y,(camera.right-camera.left)*.88/size.x):1.17,
     setDriver(value){driver=value;requestRender();},
     setVisible(value){visible=value;lcd?.setVisible(value);lastTime=0;if(!value){cancelAnimationFrame(frame);frame=0;}else requestRender();},
     setScreen(state){lcd?.update(state);},

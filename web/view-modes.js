@@ -1,7 +1,7 @@
 import * as THREE from './vendor/three/three.module.js';
 
 // One owner for viewing pose: OrbitControls in showcase, this transition in between.
-export function createViewModes({camera,controls,requestRender,onChange=()=>{},onCancel=()=>{},reducedMotion=false,now=()=>performance.now()}) {
+export function createViewModes({camera,controls,requestRender,useZoom=()=>1.17,onChange=()=>{},onCancel=()=>{},reducedMotion=false,now=()=>performance.now()}) {
   let mode='showcase',transition=null,visible=true,paused=false,dragging=false,resumeAt=0,resumeTimer=null,disposed=false;
   let reduced=reducedMotion;
   const orbitPointers=new Set(),element=controls.domElement;
@@ -23,7 +23,7 @@ export function createViewModes({camera,controls,requestRender,onChange=()=>{},o
     if(disposed||!visible||transition||mode===next)return false;
     onCancel();cancelOrbit();flushControls();controls.enabled=false;
     if(next==='use')showcase={position:camera.position.clone(),target:controls.target.clone(),zoom:camera.zoom};
-    const destination=next==='use'?{position:new THREE.Vector3(0,0,initial.position.length()),target:new THREE.Vector3(),zoom:1.06}:showcase;
+    const destination=next==='use'?{position:new THREE.Vector3(0,0,initial.position.length()),target:new THREE.Vector3(),zoom:useZoom()}:showcase;
     const start=new THREE.Spherical().setFromVector3(camera.position.clone().sub(controls.target));
     const end=new THREE.Spherical().setFromVector3(destination.position.clone().sub(destination.target));
     end.theta=start.theta+Math.atan2(Math.sin(end.theta-start.theta),Math.cos(end.theta-start.theta));
@@ -51,6 +51,7 @@ export function createViewModes({camera,controls,requestRender,onChange=()=>{},o
       if(!visible||disposed)return false;
       if(transition){
         const t=transition;t.elapsed+=dt;const progress=Math.min(1,t.elapsed/t.duration),e=progress*progress*(3-2*progress);
+        if(t.next==='use')t.destination.zoom=useZoom();
         const sphere=new THREE.Spherical(THREE.MathUtils.lerp(t.start.radius,t.end.radius,e),THREE.MathUtils.lerp(t.start.phi,t.end.phi,e),THREE.MathUtils.lerp(t.start.theta,t.end.theta,e));
         controls.target.lerpVectors(t.fromTarget,t.destination.target,e);
         camera.position.setFromSpherical(sphere).add(controls.target);camera.zoom=THREE.MathUtils.lerp(t.fromZoom,t.destination.zoom,e);camera.updateProjectionMatrix();controls.update(0);
@@ -61,6 +62,7 @@ export function createViewModes({camera,controls,requestRender,onChange=()=>{},o
         return !!transition||canRotate();
       }
       controls.autoRotate=canRotate();controls.enableDamping=mode==='showcase';
+      if(mode==='use'&&camera.zoom!==useZoom()){camera.zoom=useZoom();camera.updateProjectionMatrix();}
       const moving=mode==='showcase'?controls.update(dt):false;
       return moving||controls.autoRotate;
     },

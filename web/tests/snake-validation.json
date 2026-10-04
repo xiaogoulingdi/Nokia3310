@@ -1,0 +1,242 @@
+{
+  "version": "20261004-snake-1",
+  "physicalTurns": [
+    {
+      "key": "2",
+      "direction": "up",
+      "head": {
+        "x": 9,
+        "y": 5
+      },
+      "actions": 1
+    },
+    {
+      "key": "4",
+      "direction": "left",
+      "head": {
+        "x": 8,
+        "y": 5
+      },
+      "actions": 1
+    },
+    {
+      "key": "8",
+      "direction": "down",
+      "head": {
+        "x": 8,
+        "y": 6
+      },
+      "actions": 1
+    },
+    {
+      "key": "6",
+      "direction": "right",
+      "head": {
+        "x": 9,
+        "y": 6
+      },
+      "actions": 1
+    }
+  ],
+  "idle": {
+    "lcdDelta": 0,
+    "memory": {
+      "geometries": 59,
+      "textures": 4
+    },
+    "ms": 700,
+    "renderDelta": 0,
+    "tickDelta": 0,
+    "timerActive": false
+  },
+  "food": {
+    "score": 1,
+    "length": 4,
+    "best": 1
+  },
+  "narrowPointer": {
+    "direction": "down",
+    "overflow": false,
+    "panelPresent": false,
+    "status": "paused",
+    "zoom": 1.1712
+  },
+  "viewports": [
+    {
+      "height": 740,
+      "keysInStage": true,
+      "overflow": false,
+      "stage": {
+        "height": 562,
+        "width": 320,
+        "x": 0,
+        "y": 78
+      },
+      "width": 320,
+      "zoom": 1.1712
+    },
+    {
+      "height": 844,
+      "keysInStage": true,
+      "overflow": false,
+      "stage": {
+        "height": 666,
+        "width": 390,
+        "x": 0,
+        "y": 78
+      },
+      "width": 390,
+      "zoom": 1.1712
+    },
+    {
+      "height": 1050,
+      "keysInStage": true,
+      "overflow": false,
+      "stage": {
+        "height": 872,
+        "width": 486,
+        "x": 0,
+        "y": 78
+      },
+      "width": 486,
+      "zoom": 1.1712
+    },
+    {
+      "height": 320,
+      "keysInStage": true,
+      "overflow": false,
+      "stage": {
+        "height": 304,
+        "width": 227.1875,
+        "x": 170.390625,
+        "y": 8
+      },
+      "width": 568,
+      "zoom": 1.1712
+    },
+    {
+      "height": 900,
+      "keysInStage": true,
+      "overflow": false,
+      "stage": {
+        "height": 714,
+        "width": 1280,
+        "x": 0,
+        "y": 86
+      },
+      "width": 1280,
+      "zoom": 1.1712
+    }
+  ],
+  "keyboardTurns": [
+    {
+      "key": "2",
+      "direction": "up",
+      "head": {
+        "x": 9,
+        "y": 5
+      }
+    },
+    {
+      "key": "4",
+      "direction": "left",
+      "head": {
+        "x": 8,
+        "y": 5
+      }
+    },
+    {
+      "key": "8",
+      "direction": "down",
+      "head": {
+        "x": 8,
+        "y": 6
+      }
+    },
+    {
+      "key": "6",
+      "direction": "right",
+      "head": {
+        "x": 9,
+        "y": 6
+      }
+    }
+  ],
+  "modeExit": {
+    "active": false,
+    "mode": "leaving-use",
+    "status": "paused"
+  },
+  "reload": {
+    "difficulty": "easy",
+    "scores": {
+      "easy": 1,
+      "fast": 0,
+      "normal": 1
+    },
+    "status": "ready",
+    "storage": {
+      "available": true,
+      "writes": 0
+    },
+    "theme": "real"
+  },
+  "blur": {
+    "method": "synthetic window blur/focus events",
+    "statusAfterBlur": "paused",
+    "statusAfterFocus": "paused",
+    "timerAfterBlur": false,
+    "timerAfterFocus": false
+  },
+  "cBack": "games",
+  "tallNarrow": {
+    "overflow": false,
+    "stage": {
+      "bottom": 1000,
+      "height": 922,
+      "left": 0,
+      "right": 320,
+      "top": 78,
+      "width": 320,
+      "x": 0,
+      "y": 78
+    },
+    "zoom": 1.408
+  },
+  "wall": {
+    "status": "over",
+    "reason": "wall",
+    "timer": false
+  },
+  "retry": {
+    "score": 0,
+    "status": "running"
+  },
+  "console": [],
+  "automated": {
+    "node": 48,
+    "python": 9
+  },
+  "limitations": [
+    "Desktop Chromium responsive viewport checks, not physical mobile-device performance measurements.",
+    "Blur/focus tested with synthetic window events.",
+    "Local build only; no production deployment in this change."
+  ],
+  "screenshots": [
+    "docs/images/snake-phone-desktop.png",
+    "docs/images/snake-phone-320.png",
+    "docs/images/snake-phone-landscape.png",
+    "docs/images/snake-phone-ready.png"
+  ],
+  "speed": {
+    "difficulty": "easy",
+    "interval": 360,
+    "levels": {
+      "easy": 360,
+      "fast": 180,
+      "normal": 260
+    },
+    "status": "running",
+    "note": "Movement interval changed after the earlier interaction checks; the final build ran EASY with a 360 ms clock. Final Node suite passed after the change."
+  }
+}
