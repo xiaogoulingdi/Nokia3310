@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-10-04",
+  "verified_at_utc": "2026-10-04T08:34:52.425Z",
+  "source_commit": "cf390c689e16a7eced92ab54e45edace86d7bc03",
+  "source_branch": "chore/local-build-workflow",
+  "site": "https://daidainiao.online/",
+  "version": "20261004-feedback-3",
+  "description": "Deployed v2 model, classic/glass themes, increased key travel, local shading and synthesized key sounds.",
+  "release_directory": "/srv/daidainiao-releases/nokia3310-feedback-20261004-cf390c6",
+  "previous_directory": "/srv/daidainiao-releases/nokia3310-black-20261003T080218Z",
+  "archive_sha256": "4d16683978849a02643057d133d1b6bbf80fc51cbde3ce3f73a05c513e0b0a41",
+  "origin_file_hashes_verified": 16,
+  "files_sha256": {
+    "app.js": "f62b427c39e9499a81b7c2ee380c7367782a388420ec6c270788cd64b7356a03",
+    "appearance.js": "25f250b388ca9b41bae23141edd29f758d197b95b51817d65a8da8c6fd2f927c",
+    "assets/nokia3310.glb": "bd13712fb9ce218dd6081a5acb382d517e7133213d4e443a4dd45c068ae39527",
+    "assets/studio.json": "441255545dbfc607193991a2e70981bda1462d3804b0e9e27f919e2f3dcd99ba",
+    "index.html": "8f4cd34895525b28f511dc5ebce9a6c788ed780da082758f00f9d2743c378285",
+    "interaction.js": "6fba5d1ca2f6f499f817b552c39ce5e49e032f09aca3e6fd27d239109bda75de",
+    "key-sound.js": "df03654fa6bf5964277e10473d5fee9233a8d8e4f07d7af62fb03f42a9c1e65a",
+    "style.css": "efac3244990ebc1f4a60ae997ac55dafe67be6d8ec6861a086672f0cdad7df28",
+    "theme-switch.js": "9fc2388f93cd18386707304c373c9e1fa98e5a99b1c2e59f8a8961d8a0cdf5ec",
+    "vendor/three/LICENSE.txt": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+    "vendor/three/addons/controls/OrbitControls.js": "b97879c748170baadeb3fb84cea1ffdf4674e283dc06042f34e2acb95a76042c",
+    "vendor/three/addons/environments/RoomEnvironment.js": "c20f0b4677f6128a138d7152b85cbef9091f4f45cdfa05adca04d40c1697c7ae",
+    "vendor/three/addons/loaders/GLTFLoader.js": "67ac5551fdafa6e349bd80c8f8e5e39c136d6b2fb1ad647db9abb21dc86f9e4a",
+    "vendor/three/addons/utils/BufferGeometryUtils.js": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751",
+    "vendor/three/three.core.js": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20",
+    "vendor/three/three.module.js": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a"
+  },
+  "public_verification": {
+    "client": "Windows Chromium browser via public Cloudflare endpoint",
+    "files": [
+      {
+        "bytes": 8991,
+        "cache_status": "MISS",
+        "file": "app.js",
+        "matches": true,
+        "sha256": "f62b427c39e9499a81b7c2ee380c7367782a388420ec6c270788cd64b7356a03",
+        "status": 200,
+        "url": "https://daidainiao.online/app.js?v=20261004-feedback-3"
+      },
+      {
+        "bytes": 5269,
+        "cache_status": "MISS",
+        "file": "appearance.js",
+        "matches": true,
+        "sha256": "25f250b388ca9b41bae23141edd29f758d197b95b51817d65a8da8c6fd2f927c",
+        "status": 200,
+        "url": "https://daidainiao.online/appearance.js?v=20261004-feedback-3"
+      },
+      {
+        "bytes": 3087660,
+        "cache_status": "DYNAMIC",
+        "file": "assets/nokia3310.glb",
+        "matches": true,
+        "sha256": "bd13712fb9ce218dd6081a5acb382d517e7133213d4e443a4dd45c068ae39527",
+        "status": 200,
+        "url": "https://daidainiao.online/assets/nokia3310.glb?v=20261004-feedback-3"
+      },
+      {
+        "bytes": 6679,
+        "cache_status": "DYNAMIC",
+        "file": "assets/studio.json",
+        "matches": true,
+        "sha256": "441255545dbfc607193991a2e70981bda1462d3804b0e9e27f919e2f3dcd99ba",
+        "status": 200,
+        "url": "https://daidainiao.online/assets/studio.json?v=20261004-feedback-3"
+      },
+      {
+        "bytes": 3048,
+        "cache_status": "DYNAMIC",
+        "file": "index.html",
+        "matches": false,
+        "sha256": "0d62c7a798b1cdfbd7d9b91dadcf933827f05fc6408046c0753a43d6807123f9",
+        "status": 200,
+        "url": "https://daidainiao.online/"
+      },
+      {
+        "bytes": 2956,
+        "cache_status": "MISS",
+        "file": "interaction.js",
+        "matches": true,
+        "sha256": "6fba5d1ca2f6f499f817b552c39ce5e49e032f09aca3e6fd27d239109bda75de",
+        "status": 200,
+        "url": "https://daidainiao.online/interaction.js?v=20261004-feedback-3"
+      },
+      {
+        "bytes": 4670,
+        "cache_status": "MISS",
+        "file": "key-sound.js",
+        "matches": true,
+        "sha256": "df03654fa6bf5964277e10473d5fee9233a8d8e4f07d7af62fb03f42a9c1e65a",
+        "status": 200,
+        "url": "https://daidainiao.online/key-sound.js?v=20261004-feedback-3"
+      },
+      {
+        "bytes": 4914,
+        "cache_status": "MISS",
+        "file": "style.css",
+        "matches": true,
+        "sha256": "efac3244990ebc1f4a60ae997ac55dafe67be6d8ec6861a086672f0cdad7df28",
+        "status": 200,
+        "url": "https://daidainiao.online/style.css?v=20261004-feedback-3"
+      },
+      {
+        "bytes": 1352,
+        "cache_status": "MISS",
+        "file": "theme-switch.js",
+        "matches": true,
+        "sha256": "9fc2388f93cd18386707304c373c9e1fa98e5a99b1c2e59f8a8961d8a0cdf5ec",
+        "status": 200,
+        "url": "https://daidainiao.online/theme-switch.js?v=20261004-feedback-3"
+      },
+      {
+        "bytes": 1081,
+        "cache_status": "DYNAMIC",
+        "file": "vendor/three/LICENSE.txt",
+        "matches": true,
+        "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+        "status": 200,
+        "url": "https://daidainiao.online/vendor/three/LICENSE.txt"
+      },
+      {
+        "bytes": 38703,
+        "cache_status": "HIT",
+        "file": "vendor/three/addons/controls/OrbitControls.js",
+        "matches": true,
+        "sha256": "b97879c748170baadeb3fb84cea1ffdf4674e283dc06042f34e2acb95a76042c",
+        "status": 200,
+        "url": "https://daidainiao.online/vendor/three/addons/controls/OrbitControls.js"
+      },
+      {
+        "bytes": 4899,
+        "cache_status": "HIT",
+        "file": "vendor/three/addons/environments/RoomEnvironment.js",
+        "matches": true,
+        "sha256": "c20f0b4677f6128a138d7152b85cbef9091f4f45cdfa05adca04d40c1697c7ae",
+        "status": 200,
+        "url": "https://daidainiao.online/vendor/three/addons/environments/RoomEnvironment.js"
+      },
+      {
+        "bytes": 114739,
+        "cache_status": "HIT",
+        "file": "vendor/three/addons/loaders/GLTFLoader.js",
+        "matches": true,
+        "sha256": "67ac5551fdafa6e349bd80c8f8e5e39c136d6b2fb1ad647db9abb21dc86f9e4a",
+        "status": 200,
+        "url": "https://daidainiao.online/vendor/three/addons/loaders/GLTFLoader.js"
+      },
+      {
+        "bytes": 35539,
+        "cache_status": "HIT",
+        "file": "vendor/three/addons/utils/BufferGeometryUtils.js",
+        "matches": true,
+        "sha256": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751",
+        "status": 200,
+        "url": "https://daidainiao.online/vendor/three/addons/utils/BufferGeometryUtils.js"
+      },
+      {
+        "bytes": 1403455,
+        "cache_status": "HIT",
+        "file": "vendor/three/three.core.js",
+        "matches": true,
+        "sha256": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20",
+        "status": 200,
+        "url": "https://daidainiao.online/vendor/three/three.core.js"
+      },
+      {
+        "bytes": 603113,
+        "cache_status": "HIT",
+        "file": "vendor/three/three.module.js",
+        "matches": true,
+        "sha256": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a",
+        "status": 200,
+        "url": "https://daidainiao.online/vendor/three/three.module.js"
+      }
+    ],
+    "html_normalization": {
+      "cloudflareBeaconDetected": true,
+      "normalizedBytes": 2681,
+      "normalizedSha256": "8f4cd34895525b28f511dc5ebce9a6c788ed780da082758f00f9d2743c378285"
+    },
+    "html_note": "Cloudflare injects its existing analytics beacon. Removing only that observed script yields the exact origin HTML SHA-256.",
+    "www_redirect": {
+      "status": 301,
+      "location": "https://daidainiao.online/"
+    }
+  },
+  "browser_interaction": {
+    "real_key5": {
+      "key": {
+        "atRest": false,
+        "displacement": 0.0001765139663535975,
+        "feedback": 0.03268776618901942,
+        "keycapColor": [
+          0.5670188757235614,
+          0.5869142748717565,
+          0.5272280774271711
+        ],
+        "travel": 0.0054000008851290875,
+        "x": 624.056133841855,
+        "y": 515.4146915104656
+      },
+      "ready": "true",
+      "sound": {
+        "activeVoices": 1,
+        "contextState": "running",
+        "enabled": true,
+        "lastCue": {
+          "key": "Key_5",
+          "theme": "real"
+        },
+        "played": 1
+      },
+      "theme": "real"
+    },
+    "glass_clear": {
+      "key": {
+        "atRest": true,
+        "displacement": 0,
+        "feedback": 0,
+        "keycapColor": [
+          0.7200000286102295,
+          0.8700000047683716,
+          0.949999988079071
+        ],
+        "travel": 0.00404999814927578,
+        "x": 577.4401533807583,
+        "y": 409.4018390968528
+      },
+      "ready": "true",
+      "sound": {
+        "activeVoices": 1,
+        "contextState": "running",
+        "enabled": true,
+        "lastCue": {
+          "key": "Key_Clear",
+          "theme": "glass"
+        },
+        "played": 2
+      },
+      "theme": "glass"
+    },
+    "muted_click": {
+      "activeVoices": 0,
+      "contextState": "suspended",
+      "enabled": false,
+      "lastCue": {
+        "key": "Key_Clear",
+        "theme": "glass"
+      },
+      "played": 2
+    },
+    "sound_enabled_restored": true
+  },
+  "screenshot": "docs/images/production-feedback-20261004.png"
+}

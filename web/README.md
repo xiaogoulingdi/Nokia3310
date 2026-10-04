@@ -71,6 +71,8 @@ python3 web/build.py --verify-snapshot web/release-snapshots/20261003-black.json
 
 ## 修改与发布流程
 
+最近一次已完成的发布为 **2026-10-04 / `20261004-feedback-3`**：[部署、验收与回退记录](../docs/发布记录-20261004.md)，[文件哈希与线上检查](release-snapshots/20261004-feedback.json)。后续修改仍需独立构建和发布。
+
 1. 从同步后的 `main` 建立功能分支，修改源码或模型。
 2. 本地构建，检查显示效果、按键与目标设备表现。
 3. 提交并推送代码，确认后再合并。
