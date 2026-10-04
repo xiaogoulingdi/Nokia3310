@@ -1,0 +1,247 @@
+{
+  "date": "2026-10-04",
+  "version": "20261004-modes-1",
+  "scope": "Local development, not deployed",
+  "browser": "Windows Codex in-app browser",
+  "tests": {
+    "pythonBuild": 9,
+    "nodePhaseA": 15
+  },
+  "allLogicalKeys": {
+    "count": 16,
+    "counts": {
+      "0": 1,
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1,
+      "8": 1,
+      "9": 1,
+      "clear": 1,
+      "down": 1,
+      "hash": 1,
+      "menu": 1,
+      "star": 1,
+      "up": 1
+    },
+    "last": {
+      "key": "down",
+      "phase": "activate",
+      "source": "pointer"
+    }
+  },
+  "hold": {
+    "depression": 0.005400000885129084,
+    "travel": 0.0054000008851290875,
+    "held": [
+      "5"
+    ],
+    "heldIdleExtraFrames": 0,
+    "releaseDelta": 1,
+    "atRest": true
+  },
+  "repeat": {
+    "before400": 0,
+    "after800": 4,
+    "extraOnRelease": 0,
+    "heldPose": [
+      -0.032878859373807814,
+      0.03764170515874407,
+      -8.165556788055179e-8,
+      0.9987502603949664
+    ],
+    "cleared": {
+      "held": [],
+      "pointers": 0,
+      "repeatTimer": false
+    }
+  },
+  "cancel": {
+    "extraActions": 0,
+    "input": {
+      "held": [],
+      "pointers": 0,
+      "repeatTimer": false
+    },
+    "allRest": true
+  },
+  "lock": {
+    "sameCamera": true,
+    "zoom": 1.06
+  },
+  "keyboard": {
+    "actions": 7,
+    "last": {
+      "key": "clear",
+      "phase": "activate",
+      "source": "keyboard"
+    }
+  },
+  "rotation": {
+    "mode": {
+      "autoRotate": true,
+      "mode": "showcase",
+      "paused": false,
+      "reducedMotion": false,
+      "transition": false,
+      "visible": true
+    },
+    "changed": true
+  },
+  "pause": {
+    "sameCamera": true,
+    "extraFrames": 0
+  },
+  "reframe": {
+    "from": [
+      1.951312769177325,
+      1.0763776892652297,
+      2.744375160380034
+    ],
+    "to": [
+      0,
+      2.164700095940353e-16,
+      3.5352235394686886
+    ],
+    "mode": "use"
+  },
+  "resources": {
+    "switches": 20,
+    "before": {
+      "geometries": 59,
+      "textures": 3
+    },
+    "after": {
+      "geometries": 59,
+      "textures": 3
+    },
+    "programsBefore": 6,
+    "programsAfter": 6
+  },
+  "theme": {
+    "modeAfterGlass": "use",
+    "theme": "glass",
+    "retained": "real"
+  },
+  "reducedMotion": {
+    "mode": {
+      "autoRotate": false,
+      "mode": "showcase",
+      "paused": false,
+      "reducedMotion": true,
+      "transition": false,
+      "visible": true
+    },
+    "extraFrames": 0
+  },
+  "mobileLayout": {
+    "scrollWidth": 320,
+    "viewport": [
+      320,
+      740
+    ]
+  },
+  "landscapeLayout": {
+    "scrollWidth": 844,
+    "viewport": [
+      844,
+      390
+    ]
+  },
+  "rapid": {
+    "clicks": 100,
+    "actions": 100,
+    "rest": true,
+    "memory": {
+      "geometries": 59,
+      "textures": 3
+    }
+  },
+  "idle": {
+    "durationMs": 1000,
+    "extraFrames": 0
+  },
+  "rear": {
+    "from": [
+      3.3613897028194315,
+      -1.0385418468234875,
+      -0.34683652084115796
+    ],
+    "to": [
+      0,
+      2.164700095940353e-16,
+      3.5352235394686886
+    ],
+    "restored": [
+      3.3613897028194315,
+      -1.0385418468234875,
+      -0.34683652084115796
+    ],
+    "maxError": 0
+  },
+  "lifecycleSimulation": {
+    "method": "synthetic window blur/focus through development instrumentation",
+    "inputAfterBlur": {
+      "held": [],
+      "pointers": 0,
+      "repeatTimer": false
+    },
+    "extraFrames": 0,
+    "allRest": true,
+    "visibleOnResume": true
+  },
+  "sound": {
+    "muted": {
+      "activeVoices": 0,
+      "contextState": "suspended",
+      "enabled": false,
+      "lastCue": {
+        "key": "Key_2",
+        "theme": "real"
+      },
+      "played": 130
+    },
+    "enabled": {
+      "activeVoices": 1,
+      "contextState": "running",
+      "enabled": true,
+      "lastCue": {
+        "key": "Key_5",
+        "theme": "real"
+      },
+      "played": 131
+    },
+    "idle": {
+      "activeVoices": 0,
+      "contextState": "suspended",
+      "enabled": true,
+      "lastCue": {
+        "key": "Key_5",
+        "theme": "real"
+      },
+      "played": 131
+    }
+  },
+  "errors": [],
+  "reducedMotionVerified": {
+    "mode": {
+      "autoRotate": false,
+      "mode": "showcase",
+      "paused": false,
+      "reducedMotion": true,
+      "transition": false,
+      "visible": true
+    },
+    "extraFrames": 0
+  },
+  "limitations": [
+    "No physical mobile device tested.",
+    "Touch injection unsupported by in-app browser; multi-touch and pointer cancellation verified by deterministic DOM adapter unit tests, not real touch hardware.",
+    "Lifecycle blur/focus check used synthetic development events; hidden transition and input visibility also covered by unit tests.",
+    "Resource values are object counts, not memory bytes or a GPU benchmark.",
+    "Sound scheduling and suspension verified; no new subjective listening evaluation."
+  ]
+}

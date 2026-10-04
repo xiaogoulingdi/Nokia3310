@@ -1,78 +1,44 @@
-// Run after python web/build.py. Exercise the actual exported GLB press tracks.
-import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
-import { test } from 'node:test';
+import {test} from 'node:test';
 import * as THREE from '../dist/vendor/three/three.module.js';
-import { createKeyAnimator, KEY_NAMES, canActivatePointer } from '../dist/interaction.js';
+import {createKeyFeedback,LOGICAL_KEYS,physicalKeyFor,classifyRocker} from '../dist/interaction.js';
+import {phoneFixture} from './phone-fixture.mjs';
 
-function fixture() {
-  const glb=readFileSync(new URL('../dist/assets/nokia3310.glb',import.meta.url));
-  const jsonLength=glb.readUInt32LE(12);
-  const doc=JSON.parse(glb.subarray(20,20+jsonLength).toString());
-  const binStart=28+jsonLength;
-  const root=new THREE.Group();
-  for(const data of doc.nodes.filter(node=>KEY_NAMES.includes(node.name))) {
-    const node=new THREE.Object3D();node.name=data.name;node.position.fromArray(data.translation);root.add(node);
+test('all actual GLB keys hold their press and return exactly, preserving source tracks',()=>{
+  const {root,clips}=phoneFixture(),original=clips.map(c=>c.tracks.map(t=>Array.from(t.values))),amounts=new Map();
+  const feedback=createKeyFeedback(root,clips,(name,value)=>amounts.set(name,value));
+  for(const logical of LOGICAL_KEYS){
+    const name=physicalKeyFor(logical),key=feedback.keys.get(name);
+    feedback.hold(logical);assert.ok(key.amount>0,'immediate visual response');feedback.update(1);
+    assert.equal(key.amount,1);assert.equal(feedback.update(2),false,'settled hold needs no frames');
+    if(name!=='Key_Scroll')assert.ok(Math.abs(key.node.position.distanceTo(key.rest)-(['Key_Clear','Key_Menu'].includes(name)?.00405:.0054))<1e-6);
+    feedback.release(logical);feedback.update(1);
+    assert.ok(key.node.position.equals(key.rest));assert.ok(key.node.quaternion.equals(key.rotation));assert.equal(amounts.get(name),0);
   }
-  function floats(index,width) {
-    const accessor=doc.accessors[index],view=doc.bufferViews[accessor.bufferView];
-    assert.equal(accessor.componentType,5126);
-    const offset=binStart+(view.byteOffset??0)+(accessor.byteOffset??0);
-    const values=new Float32Array(accessor.count*width);
-    for(let i=0;i<accessor.count;i++)for(let j=0;j<width;j++)
-      values[i*width+j]=glb.readFloatLE(offset+i*(view.byteStride??width*4)+j*4);
-    return values;
-  }
-  const clips=doc.animations.filter(clip=>clip.name.startsWith('Press_')).map(data=>{
-    const tracks=data.channels.filter(channel=>channel.target.path==='translation').map(channel=>{
-      const sampler=data.samplers[channel.sampler];
-      assert.ok(!sampler.interpolation || sampler.interpolation==='LINEAR');
-      return new THREE.VectorKeyframeTrack(doc.nodes[channel.target.node].name+'.position',
-        floats(sampler.input,1),floats(sampler.output,3));
-    });
-    return new THREE.AnimationClip(data.name,-1,tracks);
-  });
-  return {root,clips};
-}
+  assert.deepEqual(clips.map(c=>c.tracks.map(t=>Array.from(t.values))),original);
+});
 
-test('all 15 actual GLB keys move 35% further, return, and clear their feedback',()=>{
-  const {root,clips}=fixture(),feedback=new Map();
-  const animator=createKeyAnimator(root,clips,(key,value)=>feedback.set(key,value));
-  for(const name of KEY_NAMES) {
-    assert.equal(animator.press(name),true);
-    animator.update(.15);
-    const key=animator.keys.get(name);
-    const expected=['Key_Menu','Key_Clear','Key_Scroll'].includes(name)?.00405:.0054;
-    assert.ok(Math.abs(key.node.position.distanceTo(key.rest)-expected)<1e-6,name);
-    assert.ok(feedback.get(name)>.99,name+' visual feedback');
-    animator.update(.5);
-    assert.ok(key.node.position.distanceTo(key.rest)<1e-7,name+' return');
-    assert.ok(feedback.get(name)<1e-6,name+' feedback reset');
-    assert.equal(animator.actions.get(name).isRunning(),false);
+test('rocker classification follows actual arrow positions and rotation, with a center dead zone',()=>{
+  const {root,clips}=phoneFixture(),feedback=createKeyFeedback(root,clips),key=feedback.keys.get('Key_Scroll'),c=feedback.calibration;
+  for(const angle of [0,.8,Math.PI]){
+    root.rotation.y=angle;root.updateMatrixWorld(true);
+    for(const direction of ['up','down']){
+      const world=key.node.localToWorld(c[direction].clone());
+      assert.equal(feedback.hit({object:key.cap,point:world}).key,direction);
+    }
+    assert.equal(classifyRocker(c.center,c),null);
   }
 });
 
-test('scaling leaves original animation buffers untouched',()=>{
-  const {root,clips}=fixture();
-  const originals=clips.map(clip=>clip.tracks.map(track=>Array.from(track.values)));
-  createKeyAnimator(root,clips);
-  assert.deepEqual(clips.map(clip=>clip.tracks.map(track=>Array.from(track.values))),originals);
-});
-
-test('rapid re-triggers and hide/reset leave all keys at rest',()=>{
-  const {root,clips}=fixture(),feedback=new Map();
-  const animator=createKeyAnimator(root,clips,(key,value)=>feedback.set(key,value));
-  for(let i=0;i<40;i++){animator.press(KEY_NAMES[i%15]);animator.update(.012);}
-  animator.reset();
-  for(const [name,key] of animator.keys){assert.ok(key.node.position.equals(key.rest));assert.equal(feedback.get(name),0);}
-});
-
-test('drag, multi-touch, long press and cancelled gestures cannot activate a sound',()=>{
-  const base={x:30,y:40,time:100,dragged:false,multitouch:false};
-  assert.equal(canActivatePointer(base,31,41,0,200),true);
-  for(const record of [{...base,dragged:true},{...base,multitouch:true},null])
-    assert.equal(canActivatePointer(record,31,41,0,200),false);
-  assert.equal(canActivatePointer(base,40,40,0,200),false);
-  assert.equal(canActivatePointer(base,30,40,0,850),false);
-  assert.equal(canActivatePointer(base,30,40,1,200),false);
+test('rocker tilts the pressed end inward, leaves other keys alone and resets after interruption',()=>{
+  const {root,clips}=phoneFixture(),feedback=createKeyFeedback(root,clips),key=feedback.keys.get('Key_Scroll'),c=feedback.calibration;
+  const depths=[];
+  for(const direction of ['up','down']){
+    feedback.hold(direction);feedback.update(1);root.updateMatrixWorld(true);
+    const up=key.node.localToWorld(c.up.clone()),down=key.node.localToWorld(c.down.clone());
+    depths.push(up.z-down.z);
+    for(const [name,item] of feedback.keys)if(name!=='Key_Scroll')assert.equal(item.amount,0);
+    feedback.reset();assert.ok(key.node.quaternion.equals(key.rotation));assert.ok(key.node.position.equals(key.rest));
+  }
+  assert.ok(depths[0]<0,'up end goes inward');assert.ok(depths[1]>0,'down end goes inward');
 });

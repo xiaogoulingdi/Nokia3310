@@ -24,3 +24,23 @@ body[data-theme=glass] .switch-thumb{transform:translateX(100%);border-color:#9c
 .sound-toggle:disabled{opacity:.5;cursor:default}
 body[data-theme=glass] .sound-toggle{border-color:#89b1be55;background:linear-gradient(120deg,#25556650,#0e192390 46%,#57362460);box-shadow:inset 1px 1px 1px #b9ecff55,inset -1px -1px 1px #e4a06e55,0 8px 28px #0009;color:#d2e5eb}
 @media(max-width:600px){.theme-control{gap:8px}.sound-toggle{width:48px;height:48px}}
+
+/* Stable room for the phone and controls in both modes. */
+#canvas-container{position:absolute;top:86px;bottom:120px;height:auto}
+.mode-panel{position:absolute;z-index:2;left:16px;right:16px;bottom:max(16px,env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center;gap:9px;pointer-events:none}
+.mode-actions{display:flex;gap:10px;align-items:center;pointer-events:auto}
+.mode-toggle,.rotation-toggle{min-height:48px;padding:0 24px;border:1px solid #70776b;border-radius:26px;font:500 14px/1 system-ui,"Microsoft YaHei",sans-serif;color:#eff3e9;background:linear-gradient(150deg,#626b59,#333b2f);box-shadow:inset 0 1px 1px #e5eed34d,0 5px 20px #0008;cursor:pointer;touch-action:manipulation;transition:background .2s,box-shadow .2s}
+.mode-toggle{min-width:140px}.rotation-toggle{background:#171c17;color:#c3cbbc;border-color:#414a3d;padding:0 18px}
+.mode-toggle:disabled,.rotation-toggle:disabled{opacity:.5;cursor:wait}
+.mode-toggle:focus-visible,.rotation-toggle:focus-visible{outline:2px solid #c3e7f0;outline-offset:4px}
+.rotation-toggle[hidden]{display:none}
+.mode-panel p{margin:0;color:#a8b1a5;font-size:12px;line-height:1.5;text-align:center}
+.key-status{min-height:18px;color:#d7e5cd;font:500 12px/18px system-ui,sans-serif;letter-spacing:.06em}
+body[data-theme=glass] .mode-toggle{border-color:#92bcc780;background:linear-gradient(120deg,#749dab80,#243f4dcc 52%,#765238b3);box-shadow:inset 1px 1px 2px #d3f5ff8c,inset -1px -1px 2px #f2bf8a66,0 5px 20px #0008;color:#eff9fc}
+body[data-theme=glass] .rotation-toggle{border-color:#51707c;background:#15232bc9;color:#c7dce4}
+body[data-mode=use] canvas,body[data-mode=use] canvas:active{cursor:pointer}
+body[data-mode=entering-use] canvas,body[data-mode=leaving-use] canvas{cursor:wait}
+canvas:focus-visible{outline:1px solid #a3c7d059;outline-offset:-4px;border-radius:12px}
+@media(max-width:600px){#canvas-container{top:78px;bottom:124px}.mode-panel{bottom:max(12px,env(safe-area-inset-bottom))}.mode-panel p{max-width:310px;font-size:11px}.theme-switch{width:calc(100vw - 88px);max-width:232px}}
+@media(max-height:480px) and (min-width:601px){#canvas-container{top:8px;bottom:8px;left:30%;width:40%}.mode-panel{left:auto;right:16px;width:27%;bottom:24px}.mode-actions{flex-direction:column}.theme-control{left:16px;top:16px;transform:scale(.85);transform-origin:top left}}
+@media(prefers-reduced-motion:reduce){.mode-toggle,.rotation-toggle{transition:none}}

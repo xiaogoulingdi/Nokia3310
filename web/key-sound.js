@@ -42,17 +42,13 @@ export function scheduleKeyTone(context,destination,key,theme,when=context.curre
   }};
 }
 
-export function createKeySound(button) {
-  let enabled=true,context,master,resuming,idleTimer,generation=0,played=0,lastCue=null;
+export function createKeySound({enabled:initialEnabled=true}={}) {
+  let enabled=initialEnabled,context,master,resuming,idleTimer,generation=0,played=0,lastCue=null,disposed=false;
   const voices=new Set();
   const AudioContextClass=globalThis.AudioContext || globalThis.webkitAudioContext;
-  try {enabled=localStorage.getItem('nokia3310.sound-enabled')!=='false';} catch {}
-  function updateButton() {
-    button.setAttribute('aria-pressed',String(enabled));
-    button.title=enabled?'关闭按键声音':'开启按键声音';
-  }
   function suspendWhenIdle() {
     clearTimeout(idleTimer);
+    if(disposed)return;
     idleTimer=setTimeout(()=>{
       if(context?.state==='running' && !voices.size)void context.suspend().catch(()=>{});
     },800);
@@ -61,7 +57,7 @@ export function createKeySound(button) {
     generation++;for(const voice of voices)voice.stop();suspendWhenIdle();
   }
   function prepare() {
-    if(!enabled || !AudioContextClass)return Promise.resolve(false);
+    if(disposed || !enabled || !AudioContextClass)return Promise.resolve(false);
     try {
       if(!context) {
         context=new AudioContextClass({latencyHint:'interactive'});
@@ -77,7 +73,7 @@ export function createKeySound(button) {
     const ticket=generation,requested=performance.now();
     function start(ready) {
       // Never replay a stale click after a delayed unlock, mute, or tab switch.
-      if(!ready || !enabled || ticket!==generation || document.hidden || performance.now()-requested>120)return;
+      if(disposed || !ready || !enabled || ticket!==generation || document.hidden || performance.now()-requested>120)return;
       if(voices.size>=4)return;
       const voice=scheduleKeyTone(context,master,key,theme);if(!voice)return;
       voices.add(voice);played++;lastCue={key,theme};
@@ -85,14 +81,11 @@ export function createKeySound(button) {
     }
     if(context?.state==='running')start(true);else void prepare().then(start);
   }
-  button.addEventListener('click',()=>{
-    enabled=!enabled;updateButton();
-    try {localStorage.setItem('nokia3310.sound-enabled',String(enabled));} catch {}
-    if(enabled)void prepare();else hush();
-  });
-  updateButton();
-  if(!AudioContextClass){enabled=false;updateButton();button.disabled=true;button.title='当前浏览器不支持按键声音';}
-  return {prepare,play,hush,get diagnostics(){
+  if(!AudioContextClass)enabled=false;
+  return {prepare,play,hush,supported:!!AudioContextClass,
+    setEnabled(value){enabled=!!value&&!!AudioContextClass;if(!enabled)hush();},
+    dispose(){disposed=true;hush();clearTimeout(idleTimer);if(context&&context.state!=='closed')void context.close().catch(()=>{});voices.clear();},
+    get diagnostics(){
     return {enabled,contextState:context?.state??'uninitialized',activeVoices:voices.size,played,lastCue};
   }};
 }
