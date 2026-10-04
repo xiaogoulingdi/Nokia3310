@@ -1,19 +1,5 @@
 {
-  "schema_version": 1,
-  "snapshot_date": "2026-10-03",
-  "base_commit": "b6df19897c400551e31adce94201aa2147d19487",
-  "source_sha256": {
-    "index.html": "117d1263d87da5b262e2ce0a473f7808b6b5f046b9aa1add768a689d3bd5ea41",
-    "style.css": "48da9131b9f1eeb9612490b8e32d532c0ae3d1c2990fdc39cc07889b38b44d7c",
-    "app.js": "85e5e11ec958946b2f0fa83a913f6a7694a334fb3ac468e8701177176c305d47",
-    "interaction.js": "e8fc2efc54dbada7db2e141cabe30e3c7e27cfd424b5ab268f1f947ed129a91c"
-  },
-  "model": {
-    "repository_path": "Blender工程/网页模型/nokia3310_interactive_v1.glb",
-    "output": "assets/nokia3310.glb",
-    "bytes": 3089660,
-    "sha256": "e32b7519c9600dae70c22731c861c956f9882e4f15a830a0a3b30a4db0ed4f8f"
-  },
+  "schema_version": 2,
   "three": {
     "version": "0.180.0",
     "tarball": "https://registry.npmjs.org/three/-/three-0.180.0.tgz",

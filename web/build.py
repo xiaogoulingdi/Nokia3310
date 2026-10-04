@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
-"""Reproduce the deployed static viewer using Python 3.10+ standard library."""
+"""Build the current viewer; optionally verify a historical release snapshot."""
 import argparse
 import base64
+from functools import partial
 import hashlib
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import io
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import tarfile
 from urllib.request import urlopen
 
 WEB = Path(__file__).resolve().parent
+SOURCE_FILES = ("index.html", "style.css", "app.js", "interaction.js")
+MODEL_PATH = Path("Blender工程/网页模型/nokia3310_interactive_v1.glb")
 
 
 def checked(data, expected, label):
@@ -19,42 +23,100 @@ def checked(data, expected, label):
     return data
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--model", type=Path, help="Optional model location; default is the existing repository GLB")
-    parser.add_argument("--tarball", type=Path, help="Optional offline Three.js tarball; integrity is always checked")
-    args = parser.parse_args()
-    lock = json.loads((WEB / "dependencies.lock.json").read_text(encoding="utf-8"))
-    model = args.model or WEB.parent / lock["model"]["repository_path"]
-    # Validate every input before writing the output directory.
-    files = {name: checked((WEB / name).read_bytes(), digest, name)
-             for name, digest in lock["source_sha256"].items()}
-    files["assets/nokia3310.glb"] = checked(model.read_bytes(), lock["model"]["sha256"], "model")
+def output_path(dist, name):
+    relative = PurePosixPath(name)
+    if relative.is_absolute() or ".." in relative.parts or "\\" in name or ":" in name:
+        raise ValueError(f"Unsafe output path: {name}")
+    destination = dist / name
+    if not destination.resolve().is_relative_to(dist.resolve()):
+        raise ValueError(f"Output escapes dist: {name}")
+    return destination
+
+
+def build(web=WEB, model=None, tarball=None, verify_snapshot=None):
+    lock = json.loads((web / "dependencies.lock.json").read_text(encoding="utf-8"))
     dependency = lock["three"]
-    if args.tarball:
-        package = args.tarball.read_bytes()
+    # Project sources are editable; integrity checks remain mandatory for dependencies.
+    # Canonical LF output avoids Windows Git autocrlf changing release bytes.
+    files = {name: (web / name).read_bytes().replace(b"\r\n", b"\n") for name in SOURCE_FILES}
+    files["assets/nokia3310.glb"] = (model or web.parent / MODEL_PATH).read_bytes()
+    cache = web / ".cache" / f"three-{dependency['version']}.tgz"
+    if tarball:
+        package = tarball.read_bytes()
+    elif cache.is_file():
+        package = cache.read_bytes()
     else:
         with urlopen(dependency["tarball"], timeout=60) as response:
             package = response.read()
     algorithm, expected = dependency["integrity"].split("-", 1)
     if algorithm != "sha512" or hashlib.sha512(package).digest() != base64.b64decode(expected, validate=True):
-        raise ValueError("Three.js package integrity mismatch")
+        raise ValueError("Three.js package integrity mismatch (check the supplied tarball or web/.cache)")
     with tarfile.open(fileobj=io.BytesIO(package), mode="r:gz") as archive:
-        # Read only the allowlisted files; never extract archive paths to disk.
+        # Only read allowlisted regular files; never extract arbitrary archive paths.
         for item in dependency["files"]:
+            name = item["output"]
+            output_path(web / "dist", name)
+            if name in files or name == "build-manifest.json":
+                raise ValueError(f"Duplicate or reserved output: {name}")
             member = archive.getmember(item["member"])
             if not member.isfile():
                 raise ValueError(f"Not a regular file: {member.name}")
             with archive.extractfile(member) as handle:
-                files[item["output"]] = checked(handle.read(), item["sha256"], member.name)
-    dist = WEB / "dist"
+                files[name] = checked(handle.read(), item["sha256"], member.name)
+    if verify_snapshot:
+        snapshot = json.loads(verify_snapshot.read_text(encoding="utf-8"))
+        expected_files = snapshot["files_sha256"]
+        if set(files) != set(expected_files):
+            raise ValueError("Snapshot file list differs from the current build")
+        for name, data in files.items():
+            checked(data, expected_files[name], f"snapshot: {name}")
+    manifest = {
+        "schema_version": 1,
+        "three_version": dependency["version"],
+        "verified_snapshot": verify_snapshot.name if verify_snapshot else None,
+        "files": {name: {"bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}
+                  for name, data in sorted(files.items())},
+    }
+    files["build-manifest.json"] = (json.dumps(manifest, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+    destinations = {name: output_path(web / "dist", name) for name in files}
+    # All input validation finishes before changing dist or the download cache.
+    if not tarball and not cache.exists():
+        cache.parent.mkdir(parents=True, exist_ok=True)
+        cache.write_bytes(package)
     for name, data in files.items():
-        destination = dist / name
+        destination = destinations[name]
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_bytes(data)
-    print(f"Verified and built {len(files)} files into web/dist")
-    for name, data in sorted(files.items()):
-        print(f"{hashlib.sha256(data).hexdigest()}  {name}")
+    return manifest
+
+
+class PreviewHandler(SimpleHTTPRequestHandler):
+    def end_headers(self):
+        self.send_header("Cache-Control", "no-store")
+        super().end_headers()
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--model", type=Path, help="Use an alternate current GLB")
+    parser.add_argument("--tarball", type=Path, help="Use an offline Three.js tarball; integrity is always checked")
+    parser.add_argument("--verify-snapshot", type=Path, help="Require exact runtime-file hashes from a release snapshot")
+    parser.add_argument("--serve", type=int, metavar="PORT", help="After building, preview on 127.0.0.1 at this port")
+    args = parser.parse_args()
+    manifest = build(model=args.model, tarball=args.tarball, verify_snapshot=args.verify_snapshot)
+    print(f"Built {len(manifest['files'])} runtime files and build-manifest.json into web/dist")
+    print(f"Three.js {manifest['three_version']}: package and file integrity verified")
+    if args.verify_snapshot:
+        print(f"Release snapshot verified: {args.verify_snapshot.name}")
+    else:
+        print("Development build: using current project sources and model")
+    if args.serve is not None:
+        with ThreadingHTTPServer(("127.0.0.1", args.serve), partial(PreviewHandler, directory=str(WEB / "dist"))) as server:
+            print(f"Preview: http://127.0.0.1:{server.server_port}/ (Ctrl+C to stop)", flush=True)
+            try:
+                server.serve_forever()
+            except KeyboardInterrupt:
+                pass
 
 
 if __name__ == "__main__":

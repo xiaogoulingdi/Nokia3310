@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-10-03",
+  "source_commit": "b60447d580e5b99ad4011c843019405182f5f1e3",
+  "base_commit": "b6df19897c400551e31adce94201aa2147d19487",
+  "site": "https://daidainiao.online/",
+  "description": "Original deployed runtime files; changing development sources must not change this record.",
+  "files_sha256": {
+    "index.html": "117d1263d87da5b262e2ce0a473f7808b6b5f046b9aa1add768a689d3bd5ea41",
+    "style.css": "48da9131b9f1eeb9612490b8e32d532c0ae3d1c2990fdc39cc07889b38b44d7c",
+    "app.js": "85e5e11ec958946b2f0fa83a913f6a7694a334fb3ac468e8701177176c305d47",
+    "interaction.js": "e8fc2efc54dbada7db2e141cabe30e3c7e27cfd424b5ab268f1f947ed129a91c",
+    "assets/nokia3310.glb": "e32b7519c9600dae70c22731c861c956f9882e4f15a830a0a3b30a4db0ed4f8f",
+    "vendor/three/three.module.js": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a",
+    "vendor/three/three.core.js": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20",
+    "vendor/three/addons/loaders/GLTFLoader.js": "67ac5551fdafa6e349bd80c8f8e5e39c136d6b2fb1ad647db9abb21dc86f9e4a",
+    "vendor/three/addons/controls/OrbitControls.js": "b97879c748170baadeb3fb84cea1ffdf4674e283dc06042f34e2acb95a76042c",
+    "vendor/three/addons/utils/BufferGeometryUtils.js": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751",
+    "vendor/three/addons/environments/RoomEnvironment.js": "c20f0b4677f6128a138d7152b85cbef9091f4f45cdfa05adca04d40c1697c7ae",
+    "vendor/three/LICENSE.txt": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601"
+  }
+}
