@@ -1,22 +1,23 @@
 import * as THREE from './vendor/three/three.module.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { createKeyFeedback } from './interaction.js?v=20261004-modes-1';
-import { createAppearance } from './appearance.js?v=20261004-modes-1';
+import { createKeyFeedback } from './interaction.js?v=20261004-screen-1';
+import { createAppearance } from './appearance.js?v=20261004-screen-1';
+import { createLCD } from './lcd.js?v=20261004-screen-1';
 
-export function createViewer({container,onProgress=()=>{}}) {
+export function createViewer({container,onProgress=()=>{},onScreenSummary=()=>{}}) {
   const scene=new THREE.Scene();scene.background=new THREE.Color(0x000000);
   const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
   renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.transmissionResolutionScale=.65;
   renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.AgXToneMapping;
   const element=renderer.domElement;element.tabIndex=-1;element.setAttribute('role','application');
-  element.setAttribute('aria-label','Nokia 3310 手机操作区');element.setAttribute('aria-describedby','instructions');
+  element.setAttribute('aria-label','Nokia 3310 手机操作区');element.setAttribute('aria-describedby','instructions keyboard-help');
   container.appendChild(element);
   const camera=new THREE.OrthographicCamera(-1,1,1,-1,.001,100);
   const controls=new OrbitControls(camera,element);controls.enableDamping=true;controls.dampingFactor=.08;
   controls.enablePan=false;controls.rotateSpeed=.75;controls.minZoom=.65;controls.maxZoom=2.5;
   const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
-  let model,feedback,appearance,size,frame=0,lastTime=0,renderCount=0,disposed=false,visible=true,driver=()=>false;
+  let model,feedback,appearance,lcd,size,frame=0,lastTime=0,renderCount=0,disposed=false,visible=true,driver=()=>false;
   const requestRender=()=>{if(!frame&&!disposed&&visible&&!document.hidden)frame=requestAnimationFrame(render);};
   function render(time){
     frame=0;if(disposed||!visible||document.hidden)return;
@@ -42,14 +43,16 @@ export function createViewer({container,onProgress=()=>{}}) {
     geometries.forEach(item=>item.dispose());if(materials)ownedMaterials.forEach(item=>item.dispose());
   }
   const ready=Promise.all([
-    new GLTFLoader().loadAsync('/assets/nokia3310.glb?v=20261004-modes-1',event=>{if(!disposed&&event.total)onProgress(Math.round(event.loaded/event.total*100));}),
-    fetch('/assets/studio.json?v=20261004-modes-1').then(response=>{if(!response.ok)throw Error('Studio HTTP '+response.status);return response.json();}),
+    new GLTFLoader().loadAsync('/assets/nokia3310.glb?v=20261004-screen-1',event=>{if(!disposed&&event.total)onProgress(Math.round(event.loaded/event.total*100));}),
+    fetch('/assets/studio.json?v=20261004-screen-1').then(response=>{if(!response.ok)throw Error('Studio HTTP '+response.status);return response.json();}),
   ]).then(([gltf,studio])=>{
     if(disposed){disposeModel(gltf.scene);return false;}
     model=gltf.scene;model.updateMatrixWorld(true);
     const bounds=new THREE.Box3().setFromObject(model),center=bounds.getCenter(new THREE.Vector3());size=bounds.getSize(new THREE.Vector3());
     model.position.sub(center);scene.add(model);
     appearance=createAppearance(renderer,scene,model,studio,center);appearance.apply('real');
+    lcd=createLCD({model,requestRender,onSummary:onScreenSummary});
+    lcd.setVisible(visible);
     feedback=createKeyFeedback(model,gltf.animations,(name,amount)=>appearance.setKeyFeedback(name,amount));
     camera.position.set(studio.camera.position[0],studio.camera.position[2],-studio.camera.position[1]).sub(center).normalize().multiplyScalar(size.y*3);
     camera.near=Math.max(size.y/1000,.0001);camera.far=size.y*100;controls.target.set(0,0,0);controls.update();resize();return true;
@@ -58,7 +61,8 @@ export function createViewer({container,onProgress=()=>{}}) {
   return {
     ready,element,camera,controls,requestRender,
     setDriver(value){driver=value;requestRender();},
-    setVisible(value){visible=value;lastTime=0;if(!value){cancelAnimationFrame(frame);frame=0;}else requestRender();},
+    setVisible(value){visible=value;lcd?.setVisible(value);lastTime=0;if(!value){cancelAnimationFrame(frame);frame=0;}else requestRender();},
+    setScreen(state){lcd?.update(state);},
     setTheme(value){appearance?.apply(value);requestRender();},
     hold(key){feedback?.hold(key);requestRender();},release(key){feedback?.release(key);requestRender();},
     resetKeys(){feedback?.reset();requestRender();},
@@ -75,8 +79,8 @@ export function createViewer({container,onProgress=()=>{}}) {
         if(name!=='Key_Scroll')logicalKeys[name.slice(4).toLowerCase()]=keys[name];
       }
       if(feedback){const rocker=feedback.keys.get('Key_Scroll').node;for(const name of ['up','down','center'])logicalKeys[name]=project(rocker.localToWorld(feedback.calibration[name].clone()));}
-      return {ready:!!feedback,theme:appearance?.current,keys,logicalKeys,renderCount,memory:{...renderer.info.memory},programs:renderer.info.programs.length,camera:camera.position.toArray(),zoom:camera.zoom,controlsEnabled:controls.enabled};
+      return {ready:!!feedback,theme:appearance?.current,keys,logicalKeys,lcd:lcd?.diagnostics,renderCount,memory:{...renderer.info.memory},programs:renderer.info.programs.length,camera:camera.position.toArray(),zoom:camera.zoom,controlsEnabled:controls.enabled};
     },
-    dispose(){if(disposed)return;disposed=true;cancelAnimationFrame(frame);observer.disconnect();controls.removeEventListener('change',requestRender);controls.dispose();appearance?.dispose();disposeModel(model,!appearance);renderer.dispose();element.remove();},
+    dispose(){if(disposed)return;disposed=true;cancelAnimationFrame(frame);observer.disconnect();controls.removeEventListener('change',requestRender);controls.dispose();lcd?.dispose();appearance?.dispose();disposeModel(model,!appearance);renderer.dispose();element.remove();},
   };
 }

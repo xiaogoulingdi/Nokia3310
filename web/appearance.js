@@ -82,7 +82,7 @@ export function createAppearance(renderer, scene, model, studio, center) {
     apply(theme) {
       if (!(theme in environments)) return;
       current = theme;
-      model.traverse(object=>{if(object.isMesh) object.material=object.userData.appearance[theme];});
+      model.traverse(object=>{if(object.isMesh && object.userData.appearance && !object.userData.lcdOwned) object.material=object.userData.appearance[theme];});
       scene.environment = environments[theme].texture;
       scene.environmentIntensity = theme === 'glass' ? 1 : .8;
       renderer.toneMappingExposure = 1;

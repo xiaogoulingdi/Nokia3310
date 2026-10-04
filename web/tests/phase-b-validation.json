@@ -1,0 +1,128 @@
+{
+  "date": "2026-10-04",
+  "version": "20261004-screen-1",
+  "baselineCommit": "2b4a056",
+  "scope": "Local browser development; not deployed",
+  "numericEntry": {
+    "digits": "123*#",
+    "draws": 6
+  },
+  "deleteOne": "123*",
+  "mainMenu": {
+    "digits": "123*",
+    "menuIndex": 0,
+    "optionsIndex": 1,
+    "page": "menu",
+    "settingsIndex": 0,
+    "soundEnabled": true,
+    "theme": "real"
+  },
+  "settingsTheme": {
+    "phone": {
+      "digits": "123*",
+      "menuIndex": 1,
+      "optionsIndex": 1,
+      "page": "settings",
+      "settingsIndex": 0,
+      "soundEnabled": true,
+      "theme": "glass"
+    },
+    "theme": "glass"
+  },
+  "settingsSound": {
+    "phone": {
+      "digits": "123*",
+      "menuIndex": 1,
+      "optionsIndex": 1,
+      "page": "settings",
+      "settingsIndex": 1,
+      "soundEnabled": false,
+      "theme": "glass"
+    },
+    "sound": {
+      "activeVoices": 0,
+      "contextState": "running",
+      "enabled": false,
+      "lastCue": {
+        "key": "Key_Scroll",
+        "theme": "glass"
+      },
+      "played": 10
+    }
+  },
+  "externalSound": true,
+  "about": "about",
+  "backFromAbout": {
+    "digits": "123*",
+    "menuIndex": 2,
+    "optionsIndex": 1,
+    "page": "menu",
+    "settingsIndex": 1,
+    "soundEnabled": true,
+    "theme": "glass"
+  },
+  "repeat": {
+    "start": 2,
+    "held": 0,
+    "repeats": 4,
+    "releaseExtra": 0,
+    "releaseLCDExtra": 0
+  },
+  "navigationResources": {
+    "path": "menu -> about -> C -> menu",
+    "roundTrips": 50,
+    "before": {
+      "geometries": 59,
+      "textures": 4
+    },
+    "after": {
+      "geometries": 59,
+      "textures": 4
+    },
+    "programsBefore": 10,
+    "programsAfter": 10
+  },
+  "freshHomeEntry": "8",
+  "limit": {
+    "length": 32,
+    "digits": "12812345678901234567890123456789",
+    "summary": "数字输入：12812345678901234567890123456789，已达 32 位上限。C 删除，空白时 C 返回待机，Menu 打开选项。"
+  },
+  "idle": {
+    "durationMs": 1000,
+    "extraFrames": 0,
+    "extraLCDDraws": 0,
+    "clockTimer": false
+  },
+  "modeRetention": {
+    "switches": 10,
+    "sameState": true,
+    "memory": {
+      "geometries": 59,
+      "textures": 4
+    }
+  },
+  "mobileLayout": {
+    "height": 740,
+    "scrollWidth": 320,
+    "width": 320
+  },
+  "lifecycle": {
+    "method": "synthetic blur/focus development events",
+    "before": true,
+    "hidden": false,
+    "resumed": true
+  },
+  "errors": [],
+  "tests": {
+    "python": 9,
+    "node": 25,
+    "total": 34
+  },
+  "limitations": [
+    "No physical mobile GPU or touch test.",
+    "Clock scheduling and visibility lifecycle use deterministic unit tests plus synthetic browser blur/focus checks.",
+    "Texture and geometry numbers count resources, not byte usage.",
+    "No remote API, accounts, actual dialing, calendar or games in this milestone."
+  ]
+}

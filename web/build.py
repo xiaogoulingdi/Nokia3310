@@ -15,7 +15,7 @@ from urllib.request import urlopen
 import webbrowser
 
 WEB = Path(__file__).resolve().parent
-SOURCE_FILES = ("index.html", "style.css", "app.js", "viewer.js", "view-modes.js", "input.js", "interaction.js", "appearance.js", "theme-switch.js", "key-sound.js", "assets/studio.json")
+SOURCE_FILES = ("index.html", "style.css", "app.js", "viewer.js", "view-modes.js", "input.js", "interaction.js", "appearance.js", "theme-switch.js", "key-sound.js", "phone-state.js", "lcd.js", "assets/studio.json")
 MODEL_PATH = Path("Blender工程/网页模型/nokia3310_interactive_v2.glb")
 
 
