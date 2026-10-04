@@ -1,0 +1,269 @@
+{
+  "schema_version": 1,
+  "verified_at_utc": "2026-10-04T11:04:21.583Z",
+  "source_commit": "ac6d236e2936430140fcd36537a3bd07cedef3b9",
+  "source_branch": "chore/local-build-workflow",
+  "site": "https://daidainiao.online/",
+  "version": "20261004-screen-1",
+  "release_directory": "/srv/daidainiao-releases/nokia3310-screen-20261004-ac6d236",
+  "previous_directory": "/srv/daidainiao-releases/nokia3310-feedback-20261004-cf390c6",
+  "archive_sha256": "a61c901be93f36ed6d0c583efcac68eb72fbf443a7682c9606c596e274b76664",
+  "origin_file_hashes_verified": 21,
+  "files_sha256": {
+    "app.js": "58ab31820c291cd85a4dcf83883ef5d297b2370ea900f7dfd99e3796f71ec19f",
+    "appearance.js": "563b8b02f217544a0d809082203ed4a8b01781dbded6518a1a68154e9764d5fe",
+    "assets/nokia3310.glb": "bd13712fb9ce218dd6081a5acb382d517e7133213d4e443a4dd45c068ae39527",
+    "assets/studio.json": "441255545dbfc607193991a2e70981bda1462d3804b0e9e27f919e2f3dcd99ba",
+    "index.html": "e898e51b523dca5c25215038a4add960ddbcb78fbbe1d2391db708ded25120f1",
+    "input.js": "6e6f121d699652acde7388a6ed3835cb971adc159f6d99cfdab7b4a57e3de360",
+    "interaction.js": "2437cf875c794328060c67e89307ea668c5542760c36d223cd6ee6462f4cd9fd",
+    "key-sound.js": "ef10e8ae3ab7142daea5e8fa9d989fe04009ccc71f2c93d22ac7f6686f16a5dd",
+    "lcd.js": "ca0814a844f350a72a7e9085df06e7ce7de1d3e63e9d5b3bda65c1ec0f5b6c64",
+    "phone-state.js": "7ad37fb0b6727f86b7e3fb98bedc22b5897d8cb588460e0a100e6511eeeb260b",
+    "style.css": "9d4a0c038983ffeeb9d60f55233caffb28f2d8a7df128d191071f42c05105c85",
+    "theme-switch.js": "9420892266b1e6b622ab4c3fd0e68197cb95b045fbd5eb2603e6c4dbb4a546bc",
+    "vendor/three/LICENSE.txt": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+    "vendor/three/addons/controls/OrbitControls.js": "b97879c748170baadeb3fb84cea1ffdf4674e283dc06042f34e2acb95a76042c",
+    "vendor/three/addons/environments/RoomEnvironment.js": "c20f0b4677f6128a138d7152b85cbef9091f4f45cdfa05adca04d40c1697c7ae",
+    "vendor/three/addons/loaders/GLTFLoader.js": "67ac5551fdafa6e349bd80c8f8e5e39c136d6b2fb1ad647db9abb21dc86f9e4a",
+    "vendor/three/addons/utils/BufferGeometryUtils.js": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751",
+    "vendor/three/three.core.js": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20",
+    "vendor/three/three.module.js": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a",
+    "view-modes.js": "6c5d2a924cbd562f99f1e2ce492bcd721d0425097170cb6a8ea755439d1801dc",
+    "viewer.js": "fc9dda23822b6fe01c212938c04737f0328f5ef5fd48da1b4a0009dc92cc2aa8"
+  },
+  "manifest": {
+    "schema_version": 1,
+    "three_version": "0.180.0",
+    "verified_snapshot": null,
+    "files": {
+      "app.js": {
+        "bytes": 6976,
+        "sha256": "58ab31820c291cd85a4dcf83883ef5d297b2370ea900f7dfd99e3796f71ec19f"
+      },
+      "appearance.js": {
+        "bytes": 5328,
+        "sha256": "563b8b02f217544a0d809082203ed4a8b01781dbded6518a1a68154e9764d5fe"
+      },
+      "assets/nokia3310.glb": {
+        "bytes": 3087660,
+        "sha256": "bd13712fb9ce218dd6081a5acb382d517e7133213d4e443a4dd45c068ae39527"
+      },
+      "assets/studio.json": {
+        "bytes": 6679,
+        "sha256": "441255545dbfc607193991a2e70981bda1462d3804b0e9e27f919e2f3dcd99ba"
+      },
+      "index.html": {
+        "bytes": 3253,
+        "sha256": "e898e51b523dca5c25215038a4add960ddbcb78fbbe1d2391db708ded25120f1"
+      },
+      "input.js": {
+        "bytes": 5047,
+        "sha256": "6e6f121d699652acde7388a6ed3835cb971adc159f6d99cfdab7b4a57e3de360"
+      },
+      "interaction.js": {
+        "bytes": 4452,
+        "sha256": "2437cf875c794328060c67e89307ea668c5542760c36d223cd6ee6462f4cd9fd"
+      },
+      "key-sound.js": {
+        "bytes": 4475,
+        "sha256": "ef10e8ae3ab7142daea5e8fa9d989fe04009ccc71f2c93d22ac7f6686f16a5dd"
+      },
+      "lcd.js": {
+        "bytes": 7352,
+        "sha256": "ca0814a844f350a72a7e9085df06e7ce7de1d3e63e9d5b3bda65c1ec0f5b6c64"
+      },
+      "phone-state.js": {
+        "bytes": 4619,
+        "sha256": "7ad37fb0b6727f86b7e3fb98bedc22b5897d8cb588460e0a100e6511eeeb260b"
+      },
+      "style.css": {
+        "bytes": 7357,
+        "sha256": "9d4a0c038983ffeeb9d60f55233caffb28f2d8a7df128d191071f42c05105c85"
+      },
+      "theme-switch.js": {
+        "bytes": 1538,
+        "sha256": "9420892266b1e6b622ab4c3fd0e68197cb95b045fbd5eb2603e6c4dbb4a546bc"
+      },
+      "vendor/three/LICENSE.txt": {
+        "bytes": 1081,
+        "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601"
+      },
+      "vendor/three/addons/controls/OrbitControls.js": {
+        "bytes": 38703,
+        "sha256": "b97879c748170baadeb3fb84cea1ffdf4674e283dc06042f34e2acb95a76042c"
+      },
+      "vendor/three/addons/environments/RoomEnvironment.js": {
+        "bytes": 4899,
+        "sha256": "c20f0b4677f6128a138d7152b85cbef9091f4f45cdfa05adca04d40c1697c7ae"
+      },
+      "vendor/three/addons/loaders/GLTFLoader.js": {
+        "bytes": 114739,
+        "sha256": "67ac5551fdafa6e349bd80c8f8e5e39c136d6b2fb1ad647db9abb21dc86f9e4a"
+      },
+      "vendor/three/addons/utils/BufferGeometryUtils.js": {
+        "bytes": 35539,
+        "sha256": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751"
+      },
+      "vendor/three/three.core.js": {
+        "bytes": 1403455,
+        "sha256": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20"
+      },
+      "vendor/three/three.module.js": {
+        "bytes": 603113,
+        "sha256": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a"
+      },
+      "view-modes.js": {
+        "bytes": 5275,
+        "sha256": "6c5d2a924cbd562f99f1e2ce492bcd721d0425097170cb6a8ea755439d1801dc"
+      },
+      "viewer.js": {
+        "bytes": 6626,
+        "sha256": "fc9dda23822b6fe01c212938c04737f0328f5ef5fd48da1b4a0009dc92cc2aa8"
+      }
+    }
+  },
+  "public_checks": [
+    {
+      "match": true,
+      "name": "app.js",
+      "sha256": "58ab31820c291cd85a4dcf83883ef5d297b2370ea900f7dfd99e3796f71ec19f",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "appearance.js",
+      "sha256": "563b8b02f217544a0d809082203ed4a8b01781dbded6518a1a68154e9764d5fe",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "assets/nokia3310.glb",
+      "sha256": "bd13712fb9ce218dd6081a5acb382d517e7133213d4e443a4dd45c068ae39527",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "assets/studio.json",
+      "sha256": "441255545dbfc607193991a2e70981bda1462d3804b0e9e27f919e2f3dcd99ba",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "index.html",
+      "sha256": "e898e51b523dca5c25215038a4add960ddbcb78fbbe1d2391db708ded25120f1",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "input.js",
+      "sha256": "6e6f121d699652acde7388a6ed3835cb971adc159f6d99cfdab7b4a57e3de360",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "interaction.js",
+      "sha256": "2437cf875c794328060c67e89307ea668c5542760c36d223cd6ee6462f4cd9fd",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "key-sound.js",
+      "sha256": "ef10e8ae3ab7142daea5e8fa9d989fe04009ccc71f2c93d22ac7f6686f16a5dd",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "lcd.js",
+      "sha256": "ca0814a844f350a72a7e9085df06e7ce7de1d3e63e9d5b3bda65c1ec0f5b6c64",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "phone-state.js",
+      "sha256": "7ad37fb0b6727f86b7e3fb98bedc22b5897d8cb588460e0a100e6511eeeb260b",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "style.css",
+      "sha256": "9d4a0c038983ffeeb9d60f55233caffb28f2d8a7df128d191071f42c05105c85",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "theme-switch.js",
+      "sha256": "9420892266b1e6b622ab4c3fd0e68197cb95b045fbd5eb2603e6c4dbb4a546bc",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "vendor/three/LICENSE.txt",
+      "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "vendor/three/addons/controls/OrbitControls.js",
+      "sha256": "b97879c748170baadeb3fb84cea1ffdf4674e283dc06042f34e2acb95a76042c",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "vendor/three/addons/environments/RoomEnvironment.js",
+      "sha256": "c20f0b4677f6128a138d7152b85cbef9091f4f45cdfa05adca04d40c1697c7ae",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "vendor/three/addons/loaders/GLTFLoader.js",
+      "sha256": "67ac5551fdafa6e349bd80c8f8e5e39c136d6b2fb1ad647db9abb21dc86f9e4a",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "vendor/three/addons/utils/BufferGeometryUtils.js",
+      "sha256": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "vendor/three/three.core.js",
+      "sha256": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "vendor/three/three.module.js",
+      "sha256": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "view-modes.js",
+      "sha256": "6c5d2a924cbd562f99f1e2ce492bcd721d0425097170cb6a8ea755439d1801dc",
+      "status": 200
+    },
+    {
+      "match": true,
+      "name": "viewer.js",
+      "sha256": "fc9dda23822b6fe01c212938c04737f0328f5ef5fd48da1b4a0009dc92cc2aa8",
+      "status": 200
+    }
+  ],
+  "html_normalization": "Removed only the existing Cloudflare beacon script before hashing",
+  "browser_flow": {
+    "path": "showcase -> use -> menu -> down -> settings -> C -> menu",
+    "final": {
+      "digits": "",
+      "menuIndex": 1,
+      "optionsIndex": 0,
+      "page": "menu",
+      "settingsIndex": 0,
+      "soundEnabled": true,
+      "theme": "real"
+    },
+    "mode": "use"
+  },
+  "screenshot": "docs/images/production-screen-20261004.png"
+}
