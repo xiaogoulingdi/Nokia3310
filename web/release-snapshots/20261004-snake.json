@@ -1,0 +1,369 @@
+{
+  "schema_version": 1,
+  "source_commit": "5b32cccd0bc586967ce80019dd40edd5438775a3",
+  "source_branch": "chore/local-build-workflow",
+  "site": "https://daidainiao.online/",
+  "version": "20261004-snake-1",
+  "release_directory": "/srv/daidainiao-releases/nokia3310-snake-20261004-5b32ccc",
+  "previous_directory": "/srv/daidainiao-releases/nokia3310-screen-20261004-ac6d236",
+  "archive_sha256": "b8cf81fd0688c91879d21896d624baebce7a592e68841fdcac496d08e06c3a11",
+  "manifest_sha256": "b143800f829f21c3b4a33fc14272883a862a8addd7fa393fb194cb7d87e3ae5d",
+  "archive_name": "nokia3310-snake-20261004-5b32ccc.tar.gz",
+  "files_sha256": {
+    "app.js": "70dbc2c479f354a612b8177a94b04e845d63ba42ce27ec59df1cea5ab342036c",
+    "appearance.js": "563b8b02f217544a0d809082203ed4a8b01781dbded6518a1a68154e9764d5fe",
+    "apps/calendar-screen.js": "27f29147e20b6d803f020f43417efa05808c54c42aaa5292c902dd319272a959",
+    "apps/calendar.js": "35d03198d8e1671fb0fca91596c8ff522e54175eefb45755a70bc9f4bf6e4ed3",
+    "apps/snake-screen.js": "6ee00e6a7bd3dd6b7bf7bcd50821224afbb1cfbc32e3258380626bffb239f5a3",
+    "apps/snake.js": "8ea97f9a6274d412be6802d25de18adf5d969ca0b2a51a7941e429618a8934c2",
+    "assets/nokia3310.glb": "bd13712fb9ce218dd6081a5acb382d517e7133213d4e443a4dd45c068ae39527",
+    "assets/studio.json": "441255545dbfc607193991a2e70981bda1462d3804b0e9e27f919e2f3dcd99ba",
+    "game-clock.js": "980c22e9f2db01454a36e9b7b6c28e6f9749c0956c69aef4c31d3426a10f378b",
+    "index.html": "8b8042fbbaf327af58872777ce57bc9158551ce0854d90f6cd99c55bbdd1cffa",
+    "input.js": "6e6f121d699652acde7388a6ed3835cb971adc159f6d99cfdab7b4a57e3de360",
+    "interaction.js": "2437cf875c794328060c67e89307ea668c5542760c36d223cd6ee6462f4cd9fd",
+    "key-sound.js": "ef10e8ae3ab7142daea5e8fa9d989fe04009ccc71f2c93d22ac7f6686f16a5dd",
+    "lcd.js": "5061880128e51baca8f8792bafbaf215d1ddb8a7047d5a6a06280c17d6d4a043",
+    "phone-state.js": "a08442d674669f7e29131e2751c34642c18b041712a42a793c8d53959a7aee93",
+    "storage.js": "d5a5fa8f5869b60b1f59d1e53768f4daee5502bb9e0f0ea18a11b1d34e4de2d0",
+    "style.css": "acaa7b0ecbab595ab9cfc83b88aee9237d3e04396c33993216ddd726bac3c83e",
+    "theme-switch.js": "9420892266b1e6b622ab4c3fd0e68197cb95b045fbd5eb2603e6c4dbb4a546bc",
+    "vendor/three/LICENSE.txt": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+    "vendor/three/addons/controls/OrbitControls.js": "b97879c748170baadeb3fb84cea1ffdf4674e283dc06042f34e2acb95a76042c",
+    "vendor/three/addons/environments/RoomEnvironment.js": "c20f0b4677f6128a138d7152b85cbef9091f4f45cdfa05adca04d40c1697c7ae",
+    "vendor/three/addons/loaders/GLTFLoader.js": "67ac5551fdafa6e349bd80c8f8e5e39c136d6b2fb1ad647db9abb21dc86f9e4a",
+    "vendor/three/addons/utils/BufferGeometryUtils.js": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751",
+    "vendor/three/three.core.js": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20",
+    "vendor/three/three.module.js": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a",
+    "view-modes.js": "b3f2098416c6c1997fb7b5802fca26e51819c4601978508baf88643963b7be69",
+    "viewer.js": "0f214cbe4d4721392b5a3e85146f0fbe81196d4c950a28c5875610bdf5b21629"
+  },
+  "manifest": {
+    "schema_version": 1,
+    "three_version": "0.180.0",
+    "verified_snapshot": null,
+    "files": {
+      "app.js": {
+        "bytes": 8796,
+        "sha256": "70dbc2c479f354a612b8177a94b04e845d63ba42ce27ec59df1cea5ab342036c"
+      },
+      "appearance.js": {
+        "bytes": 5328,
+        "sha256": "563b8b02f217544a0d809082203ed4a8b01781dbded6518a1a68154e9764d5fe"
+      },
+      "apps/calendar-screen.js": {
+        "bytes": 1325,
+        "sha256": "27f29147e20b6d803f020f43417efa05808c54c42aaa5292c902dd319272a959"
+      },
+      "apps/calendar.js": {
+        "bytes": 3531,
+        "sha256": "35d03198d8e1671fb0fca91596c8ff522e54175eefb45755a70bc9f4bf6e4ed3"
+      },
+      "apps/snake-screen.js": {
+        "bytes": 964,
+        "sha256": "6ee00e6a7bd3dd6b7bf7bcd50821224afbb1cfbc32e3258380626bffb239f5a3"
+      },
+      "apps/snake.js": {
+        "bytes": 4434,
+        "sha256": "8ea97f9a6274d412be6802d25de18adf5d969ca0b2a51a7941e429618a8934c2"
+      },
+      "assets/nokia3310.glb": {
+        "bytes": 3087660,
+        "sha256": "bd13712fb9ce218dd6081a5acb382d517e7133213d4e443a4dd45c068ae39527"
+      },
+      "assets/studio.json": {
+        "bytes": 6679,
+        "sha256": "441255545dbfc607193991a2e70981bda1462d3804b0e9e27f919e2f3dcd99ba"
+      },
+      "game-clock.js": {
+        "bytes": 890,
+        "sha256": "980c22e9f2db01454a36e9b7b6c28e6f9749c0956c69aef4c31d3426a10f378b"
+      },
+      "index.html": {
+        "bytes": 3299,
+        "sha256": "8b8042fbbaf327af58872777ce57bc9158551ce0854d90f6cd99c55bbdd1cffa"
+      },
+      "input.js": {
+        "bytes": 5047,
+        "sha256": "6e6f121d699652acde7388a6ed3835cb971adc159f6d99cfdab7b4a57e3de360"
+      },
+      "interaction.js": {
+        "bytes": 4452,
+        "sha256": "2437cf875c794328060c67e89307ea668c5542760c36d223cd6ee6462f4cd9fd"
+      },
+      "key-sound.js": {
+        "bytes": 4475,
+        "sha256": "ef10e8ae3ab7142daea5e8fa9d989fe04009ccc71f2c93d22ac7f6686f16a5dd"
+      },
+      "lcd.js": {
+        "bytes": 8065,
+        "sha256": "5061880128e51baca8f8792bafbaf215d1ddb8a7047d5a6a06280c17d6d4a043"
+      },
+      "phone-state.js": {
+        "bytes": 6996,
+        "sha256": "a08442d674669f7e29131e2751c34642c18b041712a42a793c8d53959a7aee93"
+      },
+      "storage.js": {
+        "bytes": 1399,
+        "sha256": "d5a5fa8f5869b60b1f59d1e53768f4daee5502bb9e0f0ea18a11b1d34e4de2d0"
+      },
+      "style.css": {
+        "bytes": 8231,
+        "sha256": "acaa7b0ecbab595ab9cfc83b88aee9237d3e04396c33993216ddd726bac3c83e"
+      },
+      "theme-switch.js": {
+        "bytes": 1538,
+        "sha256": "9420892266b1e6b622ab4c3fd0e68197cb95b045fbd5eb2603e6c4dbb4a546bc"
+      },
+      "vendor/three/LICENSE.txt": {
+        "bytes": 1081,
+        "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601"
+      },
+      "vendor/three/addons/controls/OrbitControls.js": {
+        "bytes": 38703,
+        "sha256": "b97879c748170baadeb3fb84cea1ffdf4674e283dc06042f34e2acb95a76042c"
+      },
+      "vendor/three/addons/environments/RoomEnvironment.js": {
+        "bytes": 4899,
+        "sha256": "c20f0b4677f6128a138d7152b85cbef9091f4f45cdfa05adca04d40c1697c7ae"
+      },
+      "vendor/three/addons/loaders/GLTFLoader.js": {
+        "bytes": 114739,
+        "sha256": "67ac5551fdafa6e349bd80c8f8e5e39c136d6b2fb1ad647db9abb21dc86f9e4a"
+      },
+      "vendor/three/addons/utils/BufferGeometryUtils.js": {
+        "bytes": 35539,
+        "sha256": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751"
+      },
+      "vendor/three/three.core.js": {
+        "bytes": 1403455,
+        "sha256": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20"
+      },
+      "vendor/three/three.module.js": {
+        "bytes": 603113,
+        "sha256": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a"
+      },
+      "view-modes.js": {
+        "bytes": 5457,
+        "sha256": "b3f2098416c6c1997fb7b5802fca26e51819c4601978508baf88643963b7be69"
+      },
+      "viewer.js": {
+        "bytes": 6924,
+        "sha256": "0f214cbe4d4721392b5a3e85146f0fbe81196d4c950a28c5875610bdf5b21629"
+      }
+    }
+  },
+  "verified_at_utc": "2026-10-04T12:34:33.898721+00:00",
+  "origin_file_hashes_verified": 27,
+  "origin_html_sha256": "8b8042fbbaf327af58872777ce57bc9158551ce0854d90f6cd99c55bbdd1cffa",
+  "caddy": "active",
+  "public_verification": {
+    "verified_at_utc": "2026-10-04T12:37:10.576366+00:00",
+    "method": "VPS curl HTTPS requests through public Cloudflare hostname, certificate verification enabled",
+    "all_match": true,
+    "resources": [
+      {
+        "name": "app.js",
+        "url": "https://daidainiao.online/app.js?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "70dbc2c479f354a612b8177a94b04e845d63ba42ce27ec59df1cea5ab342036c",
+        "match": true
+      },
+      {
+        "name": "appearance.js",
+        "url": "https://daidainiao.online/appearance.js?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "563b8b02f217544a0d809082203ed4a8b01781dbded6518a1a68154e9764d5fe",
+        "match": true
+      },
+      {
+        "name": "apps/calendar-screen.js",
+        "url": "https://daidainiao.online/apps/calendar-screen.js?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "27f29147e20b6d803f020f43417efa05808c54c42aaa5292c902dd319272a959",
+        "match": true
+      },
+      {
+        "name": "apps/calendar.js",
+        "url": "https://daidainiao.online/apps/calendar.js?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "35d03198d8e1671fb0fca91596c8ff522e54175eefb45755a70bc9f4bf6e4ed3",
+        "match": true
+      },
+      {
+        "name": "apps/snake-screen.js",
+        "url": "https://daidainiao.online/apps/snake-screen.js?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "6ee00e6a7bd3dd6b7bf7bcd50821224afbb1cfbc32e3258380626bffb239f5a3",
+        "match": true
+      },
+      {
+        "name": "apps/snake.js",
+        "url": "https://daidainiao.online/apps/snake.js?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "8ea97f9a6274d412be6802d25de18adf5d969ca0b2a51a7941e429618a8934c2",
+        "match": true
+      },
+      {
+        "name": "assets/nokia3310.glb",
+        "url": "https://daidainiao.online/assets/nokia3310.glb?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "bd13712fb9ce218dd6081a5acb382d517e7133213d4e443a4dd45c068ae39527",
+        "match": true
+      },
+      {
+        "name": "assets/studio.json",
+        "url": "https://daidainiao.online/assets/studio.json?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "441255545dbfc607193991a2e70981bda1462d3804b0e9e27f919e2f3dcd99ba",
+        "match": true
+      },
+      {
+        "name": "game-clock.js",
+        "url": "https://daidainiao.online/game-clock.js?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "980c22e9f2db01454a36e9b7b6c28e6f9749c0956c69aef4c31d3426a10f378b",
+        "match": true
+      },
+      {
+        "name": "index.html",
+        "url": "https://daidainiao.online/",
+        "status": 200,
+        "sha256": "8b8042fbbaf327af58872777ce57bc9158551ce0854d90f6cd99c55bbdd1cffa",
+        "match": true
+      },
+      {
+        "name": "input.js",
+        "url": "https://daidainiao.online/input.js?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "6e6f121d699652acde7388a6ed3835cb971adc159f6d99cfdab7b4a57e3de360",
+        "match": true
+      },
+      {
+        "name": "interaction.js",
+        "url": "https://daidainiao.online/interaction.js?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "2437cf875c794328060c67e89307ea668c5542760c36d223cd6ee6462f4cd9fd",
+        "match": true
+      },
+      {
+        "name": "key-sound.js",
+        "url": "https://daidainiao.online/key-sound.js?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "ef10e8ae3ab7142daea5e8fa9d989fe04009ccc71f2c93d22ac7f6686f16a5dd",
+        "match": true
+      },
+      {
+        "name": "lcd.js",
+        "url": "https://daidainiao.online/lcd.js?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "5061880128e51baca8f8792bafbaf215d1ddb8a7047d5a6a06280c17d6d4a043",
+        "match": true
+      },
+      {
+        "name": "phone-state.js",
+        "url": "https://daidainiao.online/phone-state.js?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "a08442d674669f7e29131e2751c34642c18b041712a42a793c8d53959a7aee93",
+        "match": true
+      },
+      {
+        "name": "storage.js",
+        "url": "https://daidainiao.online/storage.js?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "d5a5fa8f5869b60b1f59d1e53768f4daee5502bb9e0f0ea18a11b1d34e4de2d0",
+        "match": true
+      },
+      {
+        "name": "style.css",
+        "url": "https://daidainiao.online/style.css?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "acaa7b0ecbab595ab9cfc83b88aee9237d3e04396c33993216ddd726bac3c83e",
+        "match": true
+      },
+      {
+        "name": "theme-switch.js",
+        "url": "https://daidainiao.online/theme-switch.js?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "9420892266b1e6b622ab4c3fd0e68197cb95b045fbd5eb2603e6c4dbb4a546bc",
+        "match": true
+      },
+      {
+        "name": "vendor/three/LICENSE.txt",
+        "url": "https://daidainiao.online/vendor/three/LICENSE.txt",
+        "status": 200,
+        "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+        "match": true
+      },
+      {
+        "name": "vendor/three/addons/controls/OrbitControls.js",
+        "url": "https://daidainiao.online/vendor/three/addons/controls/OrbitControls.js",
+        "status": 200,
+        "sha256": "b97879c748170baadeb3fb84cea1ffdf4674e283dc06042f34e2acb95a76042c",
+        "match": true
+      },
+      {
+        "name": "vendor/three/addons/environments/RoomEnvironment.js",
+        "url": "https://daidainiao.online/vendor/three/addons/environments/RoomEnvironment.js",
+        "status": 200,
+        "sha256": "c20f0b4677f6128a138d7152b85cbef9091f4f45cdfa05adca04d40c1697c7ae",
+        "match": true
+      },
+      {
+        "name": "vendor/three/addons/loaders/GLTFLoader.js",
+        "url": "https://daidainiao.online/vendor/three/addons/loaders/GLTFLoader.js",
+        "status": 200,
+        "sha256": "67ac5551fdafa6e349bd80c8f8e5e39c136d6b2fb1ad647db9abb21dc86f9e4a",
+        "match": true
+      },
+      {
+        "name": "vendor/three/addons/utils/BufferGeometryUtils.js",
+        "url": "https://daidainiao.online/vendor/three/addons/utils/BufferGeometryUtils.js",
+        "status": 200,
+        "sha256": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751",
+        "match": true
+      },
+      {
+        "name": "vendor/three/three.core.js",
+        "url": "https://daidainiao.online/vendor/three/three.core.js",
+        "status": 200,
+        "sha256": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20",
+        "match": true
+      },
+      {
+        "name": "vendor/three/three.module.js",
+        "url": "https://daidainiao.online/vendor/three/three.module.js",
+        "status": 200,
+        "sha256": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a",
+        "match": true
+      },
+      {
+        "name": "view-modes.js",
+        "url": "https://daidainiao.online/view-modes.js?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "b3f2098416c6c1997fb7b5802fca26e51819c4601978508baf88643963b7be69",
+        "match": true
+      },
+      {
+        "name": "viewer.js",
+        "url": "https://daidainiao.online/viewer.js?v=20261004-snake-1",
+        "status": 200,
+        "sha256": "0f214cbe4d4721392b5a3e85146f0fbe81196d4c950a28c5875610bdf5b21629",
+        "match": true
+      }
+    ]
+  },
+  "tests": {
+    "node_passed": 48,
+    "python_passed": 9
+  },
+  "local_browser_evidence": "web/tests/snake-validation.json",
+  "production_browser_verification": {
+    "completed": false,
+    "reason": "Local in-app browser navigation failed with ERR_CONNECTION_CLOSED; the error page itself was not inspectable under the browser data URL policy. No production UI screenshot or click-through was claimed."
+  },
+  "notes": [
+    "Python urllib request returned 403; public checks were completed using default curl with TLS certificate verification enabled.",
+    "Source commit and 27 runtime file hashes identify the deployed bytes; later documentation commits do not change this release."
+  ]
+}
