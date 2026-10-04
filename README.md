@@ -31,9 +31,85 @@
 
 ## 2. 整体流程与技术栈
 
-![从参考图片到浏览器的整体流程](docs/assets/project-pipeline.svg)
+### 2.1 从参考资料到发布的完整流程
 
-*图 2：从左上角顺着箭头阅读。建模、导出、网页构建和服务器发布是不同步骤；推送 Git 代码不会自动更新网站。*
+下面的图直接使用 Markdown 内的 **Mermaid 源码**，可以修改节点和连线。它描述当前制作链路；第 7 节及单独的规划文档描述尚未接入的功能。
+
+```mermaid
+flowchart TB
+    subgraph Assets["一、参考资料与初始资产"]
+        Photos["实拍六视图 + AI 补充两个斜视角<br/>核对方向、分辨率和来源"]
+        Hunyuan["腾讯混元 3D<br/>根据多视图生成初始几何与贴图"]
+        Original["原始 GLB<br/>约 50 万三角面，保留为参考"]
+        Photos --> Hunyuan --> Original
+    end
+    subgraph Editing["二、Blender 模型制作"]
+        Import["导入工作副本<br/>隐藏原始参考，保留可追溯源文件"]
+        Geometry["bpy / bmesh / NumPy<br/>拟合键盘底面、合并顶点、平滑、减面"]
+        Parts["重建独立部件<br/>15 个按键父节点、字符几何、屏幕与 UV"]
+        Look["制作材质与动画<br/>玻璃透射 / IOR / 色散；按压和展示旋转"]
+        Blend["保存可编辑 .blend<br/>保留摄影机、棚拍灯光与原始参考"]
+        Export["选择手机资产导出 GLB<br/>排除原始参考和棚拍灯光"]
+        Import --> Geometry --> Parts --> Look --> Blend --> Export
+    end
+    subgraph Build["三、本地网页与构建"]
+        Sources["HTML / CSS / 原生 JavaScript<br/>场景初始化、视角控制和指针交互"]
+        Lock["锁定 Three.js 0.180.0<br/>校验包完整性和文件哈希"]
+        Builder["Python build.py<br/>整理当前源码、模型和依赖"]
+        Dist["web/dist<br/>静态网页 + GLB + vendor + 构建清单"]
+        Preview["Windows 双击启动入口<br/>本地 HTTP 预览与交互检查"]
+        Sources --> Builder
+        Lock --> Builder
+        Builder --> Dist --> Preview
+    end
+    subgraph Delivery["四、版本保存与网站交付"]
+        Git["Git / GitHub<br/>提交、推送、审查和合并"]
+        Release["发布确认过的 dist 内容<br/>上传新目录，切换站点根目录"]
+        Server["VPS 静态 HTTP 服务<br/>向访问者提供网页与模型文件"]
+        Client["访问者浏览器<br/>下载资源，用本机 GPU 实时绘制"]
+        Release --> Server --> Client
+    end
+    Original --> Import
+    Export -->|"网页 GLB 约 3.09 MB"| Builder
+    Preview -->|"验证后保存源文件"| Git
+    Preview -->|"验证后执行独立发布步骤"| Release
+    Git -.->|"版本依据，不自动部署"| Release
+```
+
+*图 2A：当前资产制作与交付流程。Blender 负责资产制作；Python 负责文件构建；网站运行时的三维计算在访问者电脑上完成。*
+
+### 2.2 网页运行时的技术关系
+
+```mermaid
+flowchart TB
+    HTTP["本地 HTTP 服务或 VPS<br/>提供构建产物"]
+    HTML["index.html + style.css<br/>黑色展台、加载状态、import map"]
+    Entry["app.js<br/>组装场景并协调各模块"]
+    subgraph Three["Three.js 0.180.0"]
+        Loader["GLTFLoader<br/>解析几何、材质、层级和动画"]
+        Scene["Scene + PerspectiveCamera<br/>手机居中，适配窗口尺寸"]
+        Lights["RoomEnvironment + PMREM<br/>环境反射、半球光和方向光"]
+        Controls["OrbitControls<br/>拖动旋转、缩放与阻尼"]
+        Ray["Raycaster<br/>二维坐标转换为三维命中"]
+        Mixer["AnimationMixer<br/>更新被触发的按键动画"]
+        Renderer["WebGLRenderer<br/>透射材质、色调映射、最终绘制"]
+    end
+    GLB["assets/nokia3310.glb<br/>手机网格、材质、命名节点与动画"]
+    Input["Pointer Events<br/>鼠标、触摸、拖动和多指识别"]
+    Keys["interaction.js<br/>查找 Key 节点、验证轻触、播放 Press 动画"]
+    Screen["浏览器 Canvas<br/>显示完整三维画面"]
+    HTTP --> HTML --> Entry
+    HTTP --> GLB --> Loader --> Scene
+    Entry --> Loader
+    Entry --> Lights --> Scene
+    Entry --> Controls --> Scene
+    Input --> Ray --> Keys --> Mixer --> Scene
+    Scene --> Renderer --> Screen
+```
+
+*图 2B：当前网页依赖关系。这里的 Canvas 是三维输出画布；后续动态 LCD 会额外使用一个小型二维 Canvas，复用同一个 WebGL 渲染器。*
+
+### 2.3 技术选型与职责
 
 | 层次 | 当前技术 | 在本项目中的职责 |
 | --- | --- | --- |
@@ -192,7 +268,7 @@ flowchart TD
     G --> H[动画结束，恢复记录的原位]
 ```
 
-*图 5：当前代码的按键事件流程。支持 Mermaid 的 Markdown 阅读器可以直接显示此图；图 2、图 4 是不依赖 Mermaid 的 SVG 插图。*
+*图 5：当前代码的按键事件流程。整体架构、交付和事件流程均采用 Mermaid；图 1、图 3 为模型图片，图 4 为资产统计插图。支持 Mermaid 的 Markdown 阅读器可以直接渲染流程图，也可以直接编辑代码块维护它们。*
 
 在移动过程中，只要累计观察到与起点的距离达到 7 px，就标记为拖动；即使后来回到起点也不会触发。出现多个指针时，参与的记录都会标记为多指手势，避免旋转或缩放被误识别成按键操作。
 
@@ -243,6 +319,28 @@ daidainiao.online {
 
 ## 7. 后续改进应该改哪里
 
+完整方案见 **[按键、屏幕与性能规划](docs/交互与性能规划.md)**。它包含模式状态机、功能清单、按键映射、动态屏幕、声音、渲染调度、内存预算和分阶段验收，全部为后续设计。
+
+建议继续使用原生 JavaScript 和已有 Three.js，用**一套模型、一套三维渲染器、一个低分辨率 LCD 画布和一个轻量应用状态**接入功能。优先完成“输入一个数字，按键动一下、屏幕出现数字、响一声”的闭环，再增加菜单和小游戏。
+
+```mermaid
+flowchart LR
+    Input["实体键命中 / 电脑键盘 / 辅助按钮"] --> Events["统一输入事件<br/>按下、抬起、取消、长按、导航重复"]
+    Events --> State["手机应用状态<br/>桌面、菜单、数字输入、小游戏"]
+    Events --> Feedback["键帽反馈与短音效"]
+    State --> LCD["复用一个 LCD CanvasTexture<br/>内容变化才上传"]
+    LCD --> Scheduler["统一渲染调度<br/>事件或动画唤醒"]
+    Feedback --> Scheduler
+    Mode["展示 / 过渡 / 使用 / 页面隐藏"] --> Scheduler
+    Scheduler --> Frame["同一 WebGLRenderer 绘制一帧"]
+```
+
+*图 7：建议的后续交互结构。当前按压功能保留为基础，屏幕内容和声音通过同一套输入事件联动。*
+
+优先功能为：桌面时钟、菜单、数字输入、音量与画质设置；第二阶段加入贪吃蛇、计算器和少量本地联系人。先做浏览器内的手机体验，不接入真实蜂窝通话或短信网络。
+
+性能优化应先区分两个目标：**停止无意义的重绘主要节省计算与功耗；降低渲染目标尺寸、控制纹理数量和资源复用才直接影响内存。** 当前 GLB 的动画缓冲数据合计仅 7,028 字节，删除这些动画不是优先项。玻璃透射带来的额外渲染目标和全屏像素数更值得先测量。
+
 | 想改的内容 | 主要入口 | 后续还需要什么 |
 | --- | --- | --- |
 | 键帽形状、字符位置、接缝 | `Nokia3310_交互优化_v1.blend` | 导出新 GLB，保持 `Key_*` 和 `Press_*` 对应关系 |
@@ -264,7 +362,9 @@ Blender 离线／视口渲染与网页实时渲染使用不同的渲染路径，
 复古液态玻璃手机/
 ├─ README.md                     本文：项目整体说明
 ├─ 启动本地预览.cmd               Windows 双击启动入口
-├─ docs/assets/                  文档流程图与数据图
+├─ docs/
+│  ├─ 交互与性能规划.md            后续功能、接入方式与优化计划
+│  └─ assets/                    文档统计插图等辅助资源
 ├─ 参考资料/                     实拍、AI 补充视角、原始混元 GLB
 ├─ Blender工程/
 │  ├─ Nokia3310_导入工作副本.blend
